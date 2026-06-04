@@ -1,26 +1,58 @@
 @import "tailwindcss";
+@import "sweetalert2/dist/sweetalert2.min.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand: #005f71;
+  --brand-50: #e8f4f7;
+  --brand-100: #c5e4eb;
+  --brand-200: #9fd0db;
+  --brand-600: #007a92;
+  --brand-700: #005f71;
+  --brand-800: #004a59;
+  --brand-900: #003844;
+  --surface: #ffffff;
+  --surface-muted: #f7fafb;
+  --border: #dce8eb;
+  --text: #0f172a;
+  --text-muted: #5c6f75;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand: var(--brand);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface-muted);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/** Ocultar barra fija de cotización cuando la galería está en pantalla completa */
+body[data-lightbox-open="true"] .mobile-quote-bar {
+  display: none;
+}
+
+/** Carrusel horizontal de miniaturas (PDP / lightbox) — scroll táctil en iOS */
+@layer utilities {
+  .gallery-thumb-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    scrollbar-width: thin;
+  }
 }
