@@ -51,186 +51,128 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
           style={{ transform: `translateX(-${active * 100}%)` }}
         >
           {slides.map((slide, index) => (
-            <SlidePanel
+            <article
               key={slide.id}
-              slide={slide}
-              index={index}
-              active={active}
-            />
+              className="relative w-full shrink-0 grow-0 basis-full"
+              aria-hidden={index !== active}
+            >
+              <div className={heroSlideFrameClass}>
+                {slide.imageUrl ? (
+                  <>
+                    <MediaImage
+                      src={slide.imageUrl}
+                      fill
+                      priority={index === 0}
+                      className={heroSlideImageClass}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-l from-black/75 via-black/40 to-black/15 sm:from-black/60 sm:via-black/30 sm:to-transparent" />
+                  </>
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-700/95 to-brand-600/80" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.15),transparent_55%)]" />
+                  </>
+                )}
+
+                <div className="absolute inset-0 flex flex-col items-end justify-end p-4 pb-5 text-right sm:justify-center sm:p-6 sm:pb-14 lg:px-10 lg:pb-16">
+                  <div className="mx-auto w-full max-w-7xl px-2 sm:px-4">
+                    <div className="ml-auto max-w-xl">
+                      {slide.eyebrow ? (
+                        <p className="line-clamp-2 text-xs font-semibold uppercase tracking-wider text-white/90 sm:text-sm">
+                          {slide.eyebrow}
+                        </p>
+                      ) : null}
+                      <h1 className="mt-2 line-clamp-3 text-xl font-bold leading-tight tracking-tight sm:line-clamp-4 sm:text-3xl md:text-4xl lg:text-5xl">
+                        {slide.title}
+                      </h1>
+                      {slide.description ? (
+                        <p className="mt-2 line-clamp-2 text-sm text-white/90 sm:mt-3 sm:line-clamp-3 sm:text-lg">
+                          {slide.description}
+                        </p>
+                      ) : null}
+
+                      {slide.cta || slide.secondaryCta ? (
+                        <div className="mt-4 flex flex-wrap items-center justify-end gap-2 sm:mt-6 sm:gap-3">
+                          {slide.cta ? (
+                            <Link
+                              href={slide.cta.href}
+                              className="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-800 shadow-sm transition hover:bg-brand-50 sm:rounded-lg sm:px-6 sm:py-3"
+                            >
+                              {slide.cta.label}
+                            </Link>
+                          ) : null}
+                          {slide.secondaryCta ? (
+                            <Link
+                              href={slide.secondaryCta.href}
+                              className="inline-flex items-center justify-center rounded-full px-3 py-2 text-sm font-medium text-white/95 underline-offset-2 transition hover:text-white sm:rounded-lg sm:border sm:border-white/40 sm:bg-white/10 sm:px-6 sm:py-3 sm:font-semibold sm:no-underline sm:hover:bg-white/20"
+                            >
+                              {slide.secondaryCta.label}
+                            </Link>
+                          ) : null}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
 
         {hasControls ? (
-          <CarouselControls
-            slides={slides}
-            active={active}
-            onPrev={prev}
-            onNext={next}
-            onGo={goTo}
-          />
+          <>
+            <button
+              type="button"
+              onClick={prev}
+              className="absolute left-3 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/45 sm:left-6 sm:flex lg:left-10"
+              aria-label="Anterior"
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              className="absolute right-3 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/45 sm:right-6 sm:flex lg:right-10"
+              aria-label="Siguiente"
+            >
+              <ChevronRight />
+            </button>
+
+            <div className="pointer-events-none absolute bottom-6 left-0 right-0 z-10 hidden justify-center gap-2 sm:flex">
+              <div className="pointer-events-auto flex gap-2">
+                {slides.map((slide, i) => (
+                  <DotButton key={slide.id} index={i} active={active} onGo={goTo} label={slide.title} />
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-black/35 px-4 py-3 backdrop-blur-sm sm:hidden">
+              <button
+                type="button"
+                onClick={prev}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"
+                aria-label="Anterior"
+              >
+                <ChevronLeft />
+              </button>
+              <div className="flex min-w-0 flex-1 justify-center gap-2">
+                {slides.map((slide, i) => (
+                  <DotButton key={slide.id} index={i} active={active} onGo={goTo} label={slide.title} />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={next}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white"
+                aria-label="Siguiente"
+              >
+                <ChevronRight />
+              </button>
+            </div>
+          </>
         ) : null}
       </div>
     </section>
-  );
-}
-
-function SlidePanel({
-  slide,
-  index,
-  active,
-}: {
-  slide: HeroSlide;
-  index: number;
-  active: number;
-}) {
-  const hasImage = Boolean(slide.imageUrl);
-  const hasCta = Boolean(slide.cta || slide.secondaryCta);
-  const showTextOverlay = !hasImage;
-
-  return (
-    <article
-      className="relative w-full shrink-0 grow-0 basis-full"
-      aria-hidden={index !== active}
-      aria-label={slide.title}
-    >
-      <div className={heroSlideFrameClass}>
-        {hasImage ? (
-          <>
-            <MediaImage
-              src={slide.imageUrl!}
-              fill
-              priority={index === 0}
-              className={heroSlideImageClass}
-            />
-            {/* Banner con arte integrado (marca izq., producto der.): poco velo arriba */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-black/55 via-black/20 to-transparent sm:h-[32%]" />
-          </>
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-700/95 to-brand-600/80" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(255,255,255,0.15),transparent_55%)]" />
-          </>
-        )}
-
-        {showTextOverlay ? (
-          <div className="absolute inset-0 flex flex-col justify-end p-4 pb-16 sm:justify-center sm:p-6 sm:pb-20 lg:px-10">
-            <div className="mx-auto w-full max-w-7xl px-2 sm:px-4">
-              {slide.eyebrow ? (
-                <p className="line-clamp-2 text-xs font-semibold uppercase tracking-wider text-white/90 sm:text-sm">
-                  {slide.eyebrow}
-                </p>
-              ) : null}
-              <h1 className="mt-2 line-clamp-3 text-xl font-bold leading-tight tracking-tight sm:line-clamp-4 sm:text-3xl md:text-4xl lg:text-5xl">
-                {slide.title}
-              </h1>
-              {slide.description ? (
-                <p className="mt-2 line-clamp-2 max-w-xl text-sm text-white/90 sm:mt-3 sm:line-clamp-3 sm:text-lg">
-                  {slide.description}
-                </p>
-              ) : null}
-              {hasCta ? (
-                <SlideCtaRow slide={slide} className="mt-4 sm:mt-6" />
-              ) : null}
-            </div>
-          </div>
-        ) : (
-          <>
-            <h1 className="sr-only">{slide.title}</h1>
-            {hasCta ? (
-              <div className="absolute bottom-14 right-3 z-10 sm:bottom-16 sm:right-6 lg:bottom-[4.5rem] lg:right-10">
-                <SlideCtaRow slide={slide} align="end" />
-              </div>
-            ) : null}
-          </>
-        )}
-      </div>
-    </article>
-  );
-}
-
-function SlideCtaRow({
-  slide,
-  className = "",
-  align = "start",
-}: {
-  slide: HeroSlide;
-  className?: string;
-  align?: "start" | "end";
-}) {
-  return (
-    <div
-      className={`flex flex-wrap items-center gap-2 sm:gap-3 ${
-        align === "end" ? "justify-end" : ""
-      } ${className}`}
-    >
-      {slide.cta ? (
-        <Link
-          href={slide.cta.href}
-          className="inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-800 shadow-md transition hover:bg-brand-50 sm:rounded-lg sm:px-6 sm:py-3"
-        >
-          {slide.cta.label}
-        </Link>
-      ) : null}
-      {slide.secondaryCta ? (
-        <Link
-          href={slide.secondaryCta.href}
-          className="inline-flex items-center justify-center rounded-full border border-white/50 bg-black/25 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-black/40 sm:rounded-lg sm:px-6 sm:py-3 sm:font-semibold"
-        >
-          {slide.secondaryCta.label}
-        </Link>
-      ) : null}
-    </div>
-  );
-}
-
-function CarouselControls({
-  slides,
-  active,
-  onPrev,
-  onNext,
-  onGo,
-}: {
-  slides: HeroSlide[];
-  active: number;
-  onPrev: () => void;
-  onNext: () => void;
-  onGo: (index: number) => void;
-}) {
-  return (
-    <div
-      className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-2 border-t border-white/10 bg-black/45 px-3 py-2.5 backdrop-blur-md sm:gap-4 sm:px-6 sm:py-3"
-      aria-label="Controles del carrusel"
-    >
-      <button
-        type="button"
-        onClick={onPrev}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25 sm:h-10 sm:w-10"
-        aria-label="Anterior"
-      >
-        <ChevronLeft />
-      </button>
-
-      <div className="flex min-w-0 flex-1 justify-center gap-2">
-        {slides.map((slide, i) => (
-          <DotButton
-            key={slide.id}
-            index={i}
-            active={active}
-            onGo={onGo}
-            label={slide.title}
-          />
-        ))}
-      </div>
-
-      <button
-        type="button"
-        onClick={onNext}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25 sm:h-10 sm:w-10"
-        aria-label="Siguiente"
-      >
-        <ChevronRight />
-      </button>
-    </div>
   );
 }
 
