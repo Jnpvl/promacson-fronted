@@ -25,7 +25,7 @@ export default async function AdminSiteContactPage() {
       <h1 className="text-2xl font-semibold text-text">Contacto del sitio</h1>
       <p className="mt-2 text-sm text-text-muted">
         Teléfono, correo, WhatsApp, dirección y horarios que se muestran en el header, footer y
-        página Nosotros. También puedes dejar preparada la URL de Facebook para cuando la uses.
+        página Nosotros. La URL de Facebook aparece en el footer y en Nosotros cuando la guardas.
       </p>
 
       <SiteContactForm initialContact={contact} />

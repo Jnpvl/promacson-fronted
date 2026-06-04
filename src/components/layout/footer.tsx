@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { mailtoHref, phoneHref, whatsappHref } from "@/lib/site-contact-utils";
+import {
+  facebookHref,
+  hasFacebook,
+  mailtoHref,
+  phoneHref,
+  whatsappHref,
+} from "@/lib/site-contact-utils";
 import { routes } from "@/lib/routes";
 import { Logo } from "@/components/ui/logo";
 import type { Service } from "@/types/service";
@@ -87,6 +93,18 @@ export function Footer({ contact, services }: { contact: SiteContact; services: 
                     WhatsApp
                   </a>
                 </li>
+                {hasFacebook(contact) ? (
+                  <li>
+                    <a
+                      href={facebookHref(contact)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white"
+                    >
+                      Facebook
+                    </a>
+                  </li>
+                ) : null}
               </ul>
             </div>
           </div>

@@ -14,6 +14,14 @@ export function whatsappHref(contact: SiteContact): string {
   return `https://wa.me/${digits}`;
 }
 
+export function hasFacebook(contact: SiteContact): boolean {
+  return Boolean(contact.facebookUrl?.trim());
+}
+
+export function facebookHref(contact: SiteContact): string {
+  return contact.facebookUrl!.trim();
+}
+
 export function serviceContactHref(type: ServiceContactType, value: string): string {
   switch (type) {
     case "phone":

@@ -6,7 +6,13 @@ import { PageHeader } from "@/components/ui/page-header";
 import { aboutConfig, aboutHighlights } from "@/config/about";
 import { siteConfig } from "@/config/site";
 import { getSiteContact } from "@/lib/site-contact";
-import { mailtoHref, phoneHref, whatsappHref } from "@/lib/site-contact-utils";
+import {
+  facebookHref,
+  hasFacebook,
+  mailtoHref,
+  phoneHref,
+  whatsappHref,
+} from "@/lib/site-contact-utils";
 import { routes } from "@/lib/routes";
 import { withCanonical } from "@/lib/seo-metadata";
 
@@ -143,6 +149,21 @@ export default async function NosotrosPage() {
                   Enviar mensaje
                 </a>
               </div>
+              {hasFacebook(contact) ? (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-text-muted">
+                    Facebook
+                  </p>
+                  <a
+                    href={facebookHref(contact)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 block text-sm font-medium text-brand-700 hover:underline"
+                  >
+                    Visitar página
+                  </a>
+                </div>
+              ) : null}
             </div>
           </div>
         </section>
