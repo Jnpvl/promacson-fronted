@@ -4,7 +4,6 @@ import { CategoryGrid } from "@/components/home/category-grid";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { HeroCarousel } from "@/components/home/hero-carousel";
 import { OurServicesSection } from "@/components/home/our-services-section";
-import { PromotionsSection } from "@/components/home/promotions-section";
 import { TrustSection } from "@/components/home/trust-section";
 import { getCategories } from "@/lib/services/categories.service";
 import { getFeaturedProducts } from "@/lib/services/products.service";
@@ -22,7 +21,6 @@ export default async function HomePage() {
   return (
     <SiteShell>
       <HeroCarousel slides={heroSlides} />
-      <PromotionsSection />
       <CategoryGrid categories={categories} />
       <FeaturedProducts products={featuredProducts} />
       <AudienceCards />
