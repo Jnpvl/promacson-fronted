@@ -20,13 +20,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  icons: {
-    icon: [
-      { url: "/brand/logo.png", type: "image/png" },
-    ],
-    apple: "/brand/logo.png",
-    shortcut: "/brand/logo.png",
-  },
 };
 
 export default function RootLayout({
