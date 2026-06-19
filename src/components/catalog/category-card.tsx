@@ -72,10 +72,10 @@ export function CategoryCard({ category, variant = "default" }: CategoryCardProp
           ) : null}
         </div>
 
-        <div className={`flex flex-1 flex-col ${isCompact ? "p-4" : "p-5 sm:p-6"}`}>
+        <div className={`flex min-h-0 flex-1 flex-col ${isCompact ? "p-4" : "p-5 sm:p-6"}`}>
           <h3
             className={`font-bold text-text group-hover:text-brand-700 ${
-              isCompact ? "text-sm" : "text-lg sm:text-xl"
+              isCompact ? "line-clamp-2 flex-1 text-sm" : "text-lg sm:text-xl"
             }`}
           >
             {category.name}
@@ -88,10 +88,10 @@ export function CategoryCard({ category, variant = "default" }: CategoryCardProp
           ) : null}
 
           <span
-            className={`mt-4 inline-flex w-fit items-center gap-2 rounded-lg font-semibold text-brand-700 transition group-hover:gap-3 ${
+            className={`mt-auto inline-flex w-fit shrink-0 items-center gap-2 pt-4 font-semibold text-brand-700 transition group-hover:gap-3 ${
               isCompact
                 ? "text-xs"
-                : "bg-brand-50 px-4 py-2.5 text-sm group-hover:bg-brand-100"
+                : "rounded-lg bg-brand-50 px-4 py-2.5 text-sm group-hover:bg-brand-100"
             }`}
           >
             {isCompact ? "Ver más" : "Explorar categoría"}

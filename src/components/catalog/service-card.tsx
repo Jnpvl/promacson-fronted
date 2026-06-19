@@ -50,27 +50,29 @@ export function ServiceCard({ service, variant = "default" }: ServiceCardProps) 
           <div className="absolute inset-0 bg-gradient-to-t from-brand-900/95 via-brand-900/50 to-brand-900/10" />
         </div>
 
-        <div className={`flex flex-1 flex-col ${isCompact ? "p-4" : "p-5 sm:p-6"}`}>
-          <h3
-            className={`font-bold text-text group-hover:text-brand-700 ${
-              isCompact ? "text-sm" : "text-lg sm:text-xl"
-            }`}
-          >
-            {service.title}
-          </h3>
+        <div className={`flex min-h-0 flex-1 flex-col ${isCompact ? "p-4" : "p-5 sm:p-6"}`}>
+          <div className={isCompact ? "flex flex-1 flex-col min-h-0" : undefined}>
+            <h3
+              className={`font-bold text-text group-hover:text-brand-700 ${
+                isCompact ? "text-sm" : "text-lg sm:text-xl"
+              }`}
+            >
+              {service.title}
+            </h3>
 
-          {!isCompact ? (
-            <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-text-muted">
-              {service.description}
-            </p>
-          ) : (
-            <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-text-muted">
-              {service.description}
-            </p>
-          )}
+            {!isCompact ? (
+              <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-text-muted">
+                {service.description}
+              </p>
+            ) : (
+              <p className="mt-2 line-clamp-2 flex-1 text-xs leading-relaxed text-text-muted">
+                {service.description}
+              </p>
+            )}
+          </div>
 
           <span
-            className={`mt-4 inline-flex w-fit items-center gap-2 font-semibold text-brand-700 transition group-hover:gap-3 ${
+            className={`mt-auto inline-flex w-fit shrink-0 items-center gap-2 pt-4 font-semibold text-brand-700 transition group-hover:gap-3 ${
               isCompact
                 ? "text-xs"
                 : "rounded-lg bg-brand-50 px-4 py-2.5 text-sm group-hover:bg-brand-100"

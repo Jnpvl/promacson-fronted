@@ -41,14 +41,14 @@ export function ProductCard({ product }: { product: ProductCardData }) {
           )}
         </div>
       </Link>
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex min-h-0 flex-1 flex-col p-4">
         <Badge variant="brand">{product.badge}</Badge>
-        <h3 className="mt-2 font-semibold text-text">
+        <h3 className="mt-2 flex-1 font-semibold text-text line-clamp-3">
           <Link href={productUrl} className="hover:text-brand-700">
             {product.name}
           </Link>
         </h3>
-        <div className="mt-4 flex flex-col gap-2">
+        <div className="mt-4 flex shrink-0 flex-col gap-2">
           <Button href={productUrl} variant="outline" className="w-full justify-center">
             Ver producto
           </Button>
