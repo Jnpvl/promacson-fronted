@@ -18,10 +18,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await getProductBySlug(slug);
   if (!product) return withCanonical(routes.catalog, { title: "Producto" });
 
-  return withCanonical(routes.product(slug), {
-    title: product.seoTitle ?? product.name,
-    description: product.seoDescription ?? product.description ?? undefined,
-  });
+  return withCanonical(
+    routes.product(slug),
+    {
+      title: product.seoTitle ?? product.name,
+      description: product.seoDescription ?? product.description ?? undefined,
+    },
+    { image: product.coverImageUrl },
+  );
 }
 
 export default async function ProductoPdpPage({ params }: Props) {

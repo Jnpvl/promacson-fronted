@@ -31,7 +31,7 @@ export function ServiceCard({ service, variant = "default" }: ServiceCardProps) 
               src={service.imageUrl}
               fill
               className={`${serviceCardImageClass} transition duration-500 group-hover:scale-105`}
-              alt=""
+              alt={service.title}
             />
           ) : (
             <div

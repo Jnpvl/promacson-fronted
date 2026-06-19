@@ -41,7 +41,7 @@ export function CategoryCard({ category, variant = "default" }: CategoryCardProp
           {category.imageUrl ? (
             <MediaImage
               src={category.imageUrl}
-              alt=""
+              alt={category.name}
               fill
               className={`${categoryCardImageClass} transition duration-500 group-hover:scale-105`}
               sizes={isCompact ? "(max-width: 640px) 50vw, 20vw" : "(max-width: 1024px) 50vw, 33vw"}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { defaultSiteOpenGraph } from "@/lib/seo-metadata";
 import { getSiteUrl } from "@/lib/site-url";
 import { QuoteCartProvider } from "@/contexts/quote-cart-context";
 import "./globals.css";
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  ...defaultSiteOpenGraph(),
 };
 
 export default function RootLayout({

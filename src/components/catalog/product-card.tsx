@@ -31,7 +31,7 @@ export function ProductCard({ product }: { product: ProductCardData }) {
           {product.coverImageUrl ? (
             <MediaImage
               src={product.coverImageUrl}
-              alt=""
+              alt={product.name}
               fill
               className={`${productCardImageClass} transition group-hover:scale-105`}
               sizes="(max-width: 640px) 50vw, 25vw"

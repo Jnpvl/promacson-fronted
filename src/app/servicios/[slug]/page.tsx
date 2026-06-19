@@ -18,10 +18,14 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
-  return withCanonical(routes.serviceDetail(slug), {
-    title: service?.seoTitle ?? service?.title ?? "Servicio",
-    description: service?.seoDescription ?? service?.description,
-  });
+  return withCanonical(
+    routes.serviceDetail(slug),
+    {
+      title: service?.seoTitle ?? service?.title ?? "Servicio",
+      description: service?.seoDescription ?? service?.description,
+    },
+    { image: service?.imageUrl },
+  );
 }
 
 export default async function ServicioDetallePage({ params }: Props) {
@@ -47,7 +51,7 @@ export default async function ServicioDetallePage({ params }: Props) {
 
         {service.imageUrl ? (
           <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-border">
-            <MediaImage src={service.imageUrl} fill className="object-cover" alt="" />
+            <MediaImage src={service.imageUrl} fill className="object-cover" alt={service.title} />
           </div>
         ) : null}
 

@@ -7,6 +7,8 @@ export const siteConfig = {
   brandLine: "Tienda",
   /** Título del sitio (pestaña del navegador, SEO) */
   siteTitle: "Promacson Tienda",
+  /** Title absoluto de la página de inicio (SEO local) */
+  homeSeoTitle: "Insumos médicos en Hermosillo, Sonora | Promacson Tienda",
   tagline: "Insumos médicos y material de curación para instituciones de salud",
   description:
     "Distribución de insumos médicos, material de curación y soluciones para hospitales, clínicas y consultorios en México.",

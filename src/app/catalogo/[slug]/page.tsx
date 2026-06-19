@@ -16,10 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = await getCategoryBySlug(slug);
   if (!category) return withCanonical(routes.catalog, { title: "Categoría" });
 
-  return withCanonical(routes.category(slug), {
-    title: category.seoTitle ?? category.name,
-    description: category.seoDescription ?? category.description,
-  });
+  return withCanonical(
+    routes.category(slug),
+    {
+      title: category.seoTitle ?? category.name,
+      description: category.seoDescription ?? category.description,
+    },
+    { image: category.imageUrl },
+  );
 }
 
 export default async function CatalogoCategoriaPage({ params }: Props) {

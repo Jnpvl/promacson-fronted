@@ -42,6 +42,21 @@ const nextConfig: NextConfig = {
         destination: "/catalogo/:slug",
         permanent: true,
       },
+      {
+        source: "/contacto",
+        destination: "/cotizacion",
+        permanent: true,
+      },
+      {
+        source: "/area-comercial",
+        destination: "/mayoreo",
+        permanent: true,
+      },
+      {
+        source: "/proveedor",
+        destination: "/mayoreo",
+        permanent: true,
+      },
     ];
   },
 };

@@ -15,6 +15,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = withCanonical(routes.search, {
   title: "Buscar",
   description: "Busca insumos médicos y servicios en Promacson Tienda.",
+  robots: { index: false, follow: true },
 });
 
 type PageProps = {

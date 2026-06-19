@@ -64,6 +64,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                       fill
                       priority={index === 0}
                       className={heroSlideImageClass}
+                      alt={slide.title}
                     />
                     <div className="absolute inset-0 bg-gradient-to-l from-black/75 via-black/40 to-black/15 sm:from-black/60 sm:via-black/30 sm:to-transparent" />
                   </>
@@ -82,9 +83,15 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                           {slide.eyebrow}
                         </p>
                       ) : null}
-                      <h1 className="mt-2 line-clamp-3 text-xl font-bold leading-tight tracking-tight sm:line-clamp-4 sm:text-3xl md:text-4xl lg:text-5xl">
-                        {slide.title}
-                      </h1>
+                      {index === active ? (
+                        <h1 className="mt-2 line-clamp-3 text-xl font-bold leading-tight tracking-tight sm:line-clamp-4 sm:text-3xl md:text-4xl lg:text-5xl">
+                          {slide.title}
+                        </h1>
+                      ) : (
+                        <h2 className="mt-2 line-clamp-3 text-xl font-bold leading-tight tracking-tight sm:line-clamp-4 sm:text-3xl md:text-4xl lg:text-5xl">
+                          {slide.title}
+                        </h2>
+                      )}
                       {slide.description ? (
                         <p className="mt-2 line-clamp-2 text-sm text-white/90 sm:mt-3 sm:line-clamp-3 sm:text-lg">
                           {slide.description}
