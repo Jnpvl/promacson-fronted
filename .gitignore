@@ -30,7 +30,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Secrets — keep .env.example for Vercel / local setup
+# Secrets — keep .env.example in the repo
 .env*
 !.env.example
 

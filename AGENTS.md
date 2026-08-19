@@ -8,7 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Portal B2B de insumos médicos (México). **Fase actual:** catálogo + cotización + leads (sin eCommerce ni precios en web). Stack: **Next.js 16 App Router**, TypeScript, Tailwind.
 
-Documentación de negocio/arquitectura: `../docs/PROPUESTA-PORTAL-INSUMOS-MEDICOS.md`. Checklist contenido: `../docs/MAQUETACION-INICIO.md`. Esquema DB referencia: `../packages/database/prisma/schema.prisma` (no integrado al front aún).
+Documentación de negocio/arquitectura: `../docs/PROPUESTA-PORTAL-INSUMOS-MEDICOS.md`. Checklist contenido: `../docs/MAQUETACION-INICIO.md`. Esquema DB: `../promacson-backend/docs/sql/001-schema.sql`.
 
 ## Monorepo
 
@@ -16,7 +16,6 @@ Documentación de negocio/arquitectura: `../docs/PROPUESTA-PORTAL-INSUMOS-MEDICO
 |------|-----|
 | `promacson-frontend/` | App web (trabajar aquí) |
 | `docs/` | Propuesta y maquetación |
-| `packages/database/` | Prisma referencia |
 
 ```bash
 cd promacson-frontend && npm run dev

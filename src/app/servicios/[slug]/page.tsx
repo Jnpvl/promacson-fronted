@@ -50,7 +50,7 @@ export default async function ServicioDetallePage({ params }: Props) {
         </nav>
 
         {service.imageUrl ? (
-          <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-border">
+          <div className="relative mb-6 aspect-16/10 overflow-hidden rounded-2xl border border-border">
             <MediaImage src={service.imageUrl} fill className="object-cover" alt={service.title} />
           </div>
         ) : null}

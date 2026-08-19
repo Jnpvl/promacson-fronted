@@ -1,5 +1,5 @@
 import { apiClient } from "@/lib/api/client";
-import { isApiConfigured } from "@/lib/api/config";
+import { getApiBase, isApiConfigured } from "@/lib/api/config";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { ApiError } from "@/lib/api/types";
 import type { AdminUser } from "@/lib/admin-auth";
@@ -22,8 +22,7 @@ export async function loginWithCredentials(payload: LoginPayload): Promise<Login
   if (!isApiConfigured()) {
     return {
       ok: false,
-      error:
-        "API no configurada. Define NEXT_PUBLIC_API_URL o API_URL en .env.local (ej. http://localhost:4000).",
+      error: "API no configurada. Define NEXT_PUBLIC_API_URL o API_URL en .env.",
     };
   }
 
@@ -41,7 +40,8 @@ export async function loginWithCredentials(payload: LoginPayload): Promise<Login
     if (err instanceof ApiError) {
       return { ok: false, error: err.message };
     }
-    return { ok: false, error: "No se pudo conectar con el servidor" };
+    const base = getApiBase() ?? "el API";
+    return { ok: false, error: `No se pudo conectar con ${base}` };
   }
 }
 

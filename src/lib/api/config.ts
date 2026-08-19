@@ -1,4 +1,4 @@
-const DEV_API_DEFAULT = "http://localhost:4000";
+const DEV_API_DEFAULT = "https://jp-enterprise.tail5cbc3e.ts.net";
 
 /** Base URL del backend (servidor: API_URL; cliente: NEXT_PUBLIC_API_URL). */
 export function getApiBase(): string | undefined {

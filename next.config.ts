@@ -3,24 +3,27 @@ import type { NextConfig } from "next";
 const apiUrl =
   process.env.API_URL?.trim() ||
   process.env.NEXT_PUBLIC_API_URL?.trim() ||
-  "http://localhost:4000";
+  "https://jp-enterprise.tail5cbc3e.ts.net";
+
+function uploadRemotePattern(url: string): {
+  protocol: "http" | "https";
+  hostname: string;
+  port?: string;
+  pathname: string;
+} {
+  const parsed = new URL(url);
+  const protocol = parsed.protocol === "http:" ? "http" : "https";
+  return {
+    protocol,
+    hostname: parsed.hostname,
+    ...(parsed.port ? { port: parsed.port } : {}),
+    pathname: "/uploads/**",
+  };
+}
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "4000",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "4000",
-        pathname: "/uploads/**",
-      },
-    ],
+    remotePatterns: [uploadRemotePattern(apiUrl)],
   },
   async rewrites() {
     return [
