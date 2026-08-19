@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AdminImagePicker } from "@/components/admin/admin-image-picker";
 import { Button } from "@/components/ui/button";
 import { MediaImage } from "@/components/ui/media-image";
 import {
   heroSlideImageClass,
   heroSlideImageGuidelines,
+  heroSlideImageTarget,
 } from "@/lib/hero-slide-layout";
 import { routes } from "@/lib/routes";
 import type { SliderFormValues, SliderRecord } from "@/types/hero-slide";
@@ -55,8 +57,8 @@ export function SliderForm({ slider }: { slider?: SliderRecord }) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
-  async function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
+  async function handlePickedImage(files: File[]) {
+    const file = files[0];
     if (!file) return;
 
     setUploading(true);
@@ -215,12 +217,11 @@ export function SliderForm({ slider }: { slider?: SliderRecord }) {
           </div>
         ) : null}
 
-        <input
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          onChange={handleImageChange}
+        <AdminImagePicker
+          target={heroSlideImageTarget}
           disabled={uploading}
-          className="block w-full text-sm text-text-muted file:mr-4 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-brand-800"
+          onPick={handlePickedImage}
+          onError={setError}
         />
         {uploading ? <p className="text-sm text-text-muted">Subiendo imagen…</p> : null}
         {!form.imageUrl ? (

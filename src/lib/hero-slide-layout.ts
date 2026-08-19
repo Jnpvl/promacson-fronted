@@ -12,3 +12,5 @@ export const heroSlideImageGuidelines = {
   safeZone:
     "Marca/arte a la izquierda en la imagen; título y botones del sitio se muestran a la derecha. Evita texto importante en el borde derecho.",
 };
+
+export const heroSlideImageTarget = { width: 1920, height: 720 };

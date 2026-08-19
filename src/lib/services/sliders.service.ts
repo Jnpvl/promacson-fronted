@@ -1,3 +1,4 @@
+import { CATALOG_REVALIDATE_SECONDS } from "@/lib/api/cache";
 import { apiClient, hasApiClient } from "@/lib/api/client";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { MOCK_HERO_SLIDES } from "@/lib/mock-hero-slides";
@@ -28,7 +29,7 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
 
   try {
     const rows = await apiClient.get<SliderRecord[]>(apiEndpoints.sliders.public, {
-      next: { revalidate: 60, tags: ["hero-slides"] },
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["hero-slides"] },
     });
     return rows.map(mapSliderToHeroSlide);
   } catch (err) {

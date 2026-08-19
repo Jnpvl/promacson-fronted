@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AdminImagePicker } from "@/components/admin/admin-image-picker";
 import { Button } from "@/components/ui/button";
 import { MediaImage } from "@/components/ui/media-image";
 import {
@@ -11,6 +12,7 @@ import {
   productGalleryFrameClass,
   productGalleryImageClass,
   productImageGuidelines,
+  productImageTarget,
 } from "@/lib/product-image-layout";
 import { routes } from "@/lib/routes";
 import { adminFormClassName, adminFormFieldsGridClassName } from "@/lib/admin-form-styles";
@@ -85,16 +87,15 @@ export function ProductForm({
     );
   }
 
-  async function handleImagesChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const files = event.target.files;
-    if (!files?.length) return;
+  async function handlePickedImages(files: File[]) {
+    if (!files.length) return;
 
     setUploading(true);
     setError(null);
 
     try {
       const body = new FormData();
-      for (const file of Array.from(files)) {
+      for (const file of files) {
         body.append("images", file);
       }
 
@@ -111,7 +112,6 @@ export function ProductForm({
       setError("No se pudieron subir las imágenes");
     } finally {
       setUploading(false);
-      event.target.value = "";
     }
   }
 
@@ -398,13 +398,12 @@ export function ProductForm({
           </ul>
         ) : null}
 
-        <input
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
+        <AdminImagePicker
           multiple
-          onChange={handleImagesChange}
+          target={productImageTarget}
           disabled={uploading}
-          className="block w-full text-sm text-text-muted file:mr-4 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-brand-800"
+          onPick={handlePickedImages}
+          onError={setError}
         />
         {uploading ? <p className="text-sm text-text-muted">Subiendo imágenes…</p> : null}
         {!form.imageUrls.length ? (

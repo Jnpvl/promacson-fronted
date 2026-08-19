@@ -1,3 +1,4 @@
+import { CATALOG_REVALIDATE_SECONDS } from "@/lib/api/cache";
 import { apiClient, hasApiClient } from "@/lib/api/client";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { ApiError } from "@/lib/api/types";
@@ -27,7 +28,10 @@ export async function getProducts(categorySlug?: string): Promise<ProductRecord[
       ? `${apiEndpoints.products.public}?category=${encodeURIComponent(categorySlug)}`
       : apiEndpoints.products.public;
     return await apiClient.get<ProductRecord[]>(path, {
-      next: { revalidate: 60, tags: ["products", categorySlug ? `products-${categorySlug}` : "products-all"] },
+      next: {
+        revalidate: CATALOG_REVALIDATE_SECONDS,
+        tags: ["products", categorySlug ? `products-${categorySlug}` : "products-all"],
+      },
     });
   } catch (err) {
     console.warn("[products] fetch failed", err);
@@ -43,7 +47,7 @@ export async function getFeaturedProducts(): Promise<ProductRecord[]> {
 
   try {
     return await apiClient.get<ProductRecord[]>(apiEndpoints.products.featured, {
-      next: { revalidate: 60, tags: ["products", "products-featured"] },
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["products", "products-featured"] },
     });
   } catch (err) {
     console.warn("[products] featured fetch failed", err);
@@ -60,7 +64,7 @@ export async function getProductBySlug(slug: string): Promise<ProductRecord | nu
   try {
     return await apiClient.get<ProductRecord>(
       `${apiEndpoints.products.public}/${encodeURIComponent(slug)}`,
-      { next: { revalidate: 60, tags: ["products", `product-${slug}`] } },
+      { next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["products", `product-${slug}`] } },
     );
   } catch (err) {
     if (err instanceof ApiError && err.status === 404) return null;

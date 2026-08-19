@@ -1,3 +1,4 @@
+import { CATALOG_REVALIDATE_SECONDS } from "@/lib/api/cache";
 import { apiClient, hasApiClient } from "@/lib/api/client";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { ApiError } from "@/lib/api/types";
@@ -28,7 +29,7 @@ export async function getServices(): Promise<Service[]> {
 
   try {
     const rows = await apiClient.get<ServiceRecord[]>(apiEndpoints.services.public, {
-      next: { revalidate: 60, tags: ["services"] },
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["services"] },
     });
     return rows.map(mapServiceRecord);
   } catch (err) {
@@ -46,7 +47,7 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
   try {
     const row = await apiClient.get<ServiceRecord>(
       `${apiEndpoints.services.public}/${encodeURIComponent(slug)}`,
-      { next: { revalidate: 60, tags: ["services", `service-${slug}`] } },
+      { next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["services", `service-${slug}`] } },
     );
     return mapServiceRecord(row);
   } catch (err) {

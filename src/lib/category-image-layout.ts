@@ -12,3 +12,5 @@ export const categoryImageGuidelines = {
   ratio: "4:3 en inicio · 16:10 en catálogo",
   note: "Centra el producto o icono; los bordes se recortan según la vista.",
 };
+
+export const categoryImageTarget = { width: 1200, height: 900 };

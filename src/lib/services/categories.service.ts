@@ -1,3 +1,4 @@
+import { CATALOG_REVALIDATE_SECONDS } from "@/lib/api/cache";
 import { apiClient, hasApiClient } from "@/lib/api/client";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { ApiError } from "@/lib/api/types";
@@ -25,7 +26,7 @@ export async function getCategories(): Promise<Category[]> {
 
   try {
     const rows = await apiClient.get<CategoryRecord[]>(apiEndpoints.categories.public, {
-      next: { revalidate: 60, tags: ["categories"] },
+      next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["categories"] },
     });
     return rows.map(mapCategoryRecord);
   } catch (err) {
@@ -43,7 +44,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
   try {
     const row = await apiClient.get<CategoryRecord>(
       `${apiEndpoints.categories.public}/${encodeURIComponent(slug)}`,
-      { next: { revalidate: 60, tags: ["categories", `category-${slug}`] } },
+      { next: { revalidate: CATALOG_REVALIDATE_SECONDS, tags: ["categories", `category-${slug}`] } },
     );
     return mapCategoryRecord(row);
   } catch (err) {

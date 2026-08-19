@@ -31,3 +31,5 @@ export const productImageGuidelines = {
   ratio: "4:3 en todo el sitio",
   note: "Sube en 4:3. En tarjetas se recorta el centro; en ficha se ve la imagen completa dentro del mismo marco.",
 };
+
+export const productImageTarget = { width: 1200, height: 900 };

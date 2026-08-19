@@ -1,3 +1,4 @@
+import { SITE_CONTACT_REVALIDATE_SECONDS } from "@/lib/api/cache";
 import { apiClient, hasApiClient } from "@/lib/api/client";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { ApiError } from "@/lib/api/types";
@@ -42,7 +43,7 @@ export async function getSiteContactFromApi(): Promise<SiteContact> {
 
   try {
     const data = await apiClient.get<unknown>(apiEndpoints.site.contact, {
-      next: { revalidate: 300, tags: ["site-contact"] },
+      next: { revalidate: SITE_CONTACT_REVALIDATE_SECONDS, tags: ["site-contact"] },
     });
     return normalizeSiteContact(data);
   } catch (err) {
