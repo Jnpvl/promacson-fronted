@@ -24,7 +24,7 @@ function uploadRemotePattern(url: string): {
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [uploadRemotePattern(apiUrl)],
-    minimumCacheTTL: 60 * 60 * 24 * 30,
+    minimumCacheTTL: 60,
   },
   async rewrites() {
     return [
