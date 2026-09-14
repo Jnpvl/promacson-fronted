@@ -7,8 +7,8 @@ import type { CategoryRecord } from "@/types/category";
 import type { ProductRecord } from "@/types/product";
 import type { ServiceRecord } from "@/types/service";
 
-/** Regenerar el sitemap como máximo cada hora (nuevos productos/categorías). */
-export const revalidate = 3600;
+/** Alinear con CATALOG_REVALIDATE_SECONDS (60) para no servir un snapshot viejo de productos. */
+export const revalidate = 60;
 
 function absoluteUrl(path: string): string {
   const base = getSiteUrl().origin;
@@ -41,16 +41,15 @@ async function fetchCatalogEntries(): Promise<MetadataRoute.Sitemap> {
   if (!hasApiClient()) return [];
 
   try {
+    const fetchOpts = {
+      // Sitemap debe ver el catálogo actual; no compartir un Data Cache de 1h con 4 productos.
+      cache: "no-store" as const,
+    };
+
     const [categories, products, services] = await Promise.all([
-      apiClient.get<CategoryRecord[]>(apiEndpoints.categories.public, {
-        next: { revalidate: 3600, tags: ["categories"] },
-      }),
-      apiClient.get<ProductRecord[]>(apiEndpoints.products.public, {
-        next: { revalidate: 3600, tags: ["products"] },
-      }),
-      apiClient.get<ServiceRecord[]>(apiEndpoints.services.public, {
-        next: { revalidate: 3600, tags: ["services"] },
-      }),
+      apiClient.get<CategoryRecord[]>(apiEndpoints.categories.public, fetchOpts),
+      apiClient.get<ProductRecord[]>(apiEndpoints.products.public, fetchOpts),
+      apiClient.get<ServiceRecord[]>(apiEndpoints.services.public, fetchOpts),
     ]);
 
     const categoryEntries = categories

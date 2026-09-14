@@ -5,5 +5,6 @@ export function revalidateProducts(): void {
   revalidatePath("/");
   revalidatePath("/catalogo");
   revalidatePath("/catalogo/productos");
+  revalidatePath("/sitemap.xml");
   revalidateTag("products", "max");
 }
