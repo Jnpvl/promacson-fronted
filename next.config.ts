@@ -61,6 +61,11 @@ const nextConfig: NextConfig = {
         destination: "/mayoreo",
         permanent: true,
       },
+      {
+        source: "/producto/baston-con-asiento-plegable",
+        destination: "/catalogo/ortopedia-y-soportes",
+        permanent: true,
+      },
     ];
   },
 };
