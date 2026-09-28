@@ -9,6 +9,7 @@ export const routes = {
   quote: "/cotizacion",
   wholesale: "/mayoreo",
   about: "/nosotros",
+  location: "/ubicacion",
   services: "/servicios",
   serviceDetail: (slug: string) => `/servicios/${slug}`,
   admin: {

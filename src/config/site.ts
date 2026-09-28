@@ -10,13 +10,18 @@ export const siteConfig = {
   /** Title absoluto de la página de inicio (SEO local) */
   homeSeoTitle: "Insumos médicos en Hermosillo, Sonora | Promacson Tienda",
   tagline: "Insumos médicos y material de curación para instituciones de salud",
+  /** Meta description home (~150–155 chars, SEO local Hermosillo). */
   description:
-    "Distribución de insumos médicos, material de curación y soluciones para hospitales, clínicas y consultorios en México.",
+    "Insumos médicos, material de curación y ortopedia en Hermosillo. Cotiza con Promacson Tienda sin checkout: atención en sucursal y propuesta personalizada.",
+  /** H1 fijo del inicio (SEO local; el carrusel usa h2). */
+  homeH1: "Insumos médicos y material de curación en Hermosillo",
   quoteCount: 2,
   brand: {
     primary: "#005F71",
     white: "#FFFFFF",
     logo: "/brand/logo.png",
+    /** Open Graph / Twitter (~1200×630). */
+    ogImage: "/og/og-default.png",
   },
   stats: [
     { label: "Años en el mercado", value: "30+" },

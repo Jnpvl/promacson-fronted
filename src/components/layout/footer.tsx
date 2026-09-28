@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { storeNap } from "@/config/store-nap";
 import {
   facebookHref,
   hasFacebook,
@@ -13,6 +14,9 @@ import type { Service } from "@/types/service";
 import type { SiteContact } from "@/types/site-contact";
 
 export function Footer({ contact, services }: { contact: SiteContact; services: Service[] }) {
+  const address = contact.address?.trim() || storeNap.addressFull;
+  const hours = contact.businessHours?.trim() || storeNap.hoursDisplay;
+
   return (
     <footer className="mt-12 border-t border-border bg-brand-800 text-white">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
@@ -59,6 +63,11 @@ export function Footer({ contact, services }: { contact: SiteContact; services: 
                   </Link>
                 </li>
                 <li>
+                  <Link href={routes.location} className="hover:text-white">
+                    Ubicación
+                  </Link>
+                </li>
+                <li>
                   <Link href={routes.wholesale} className="hover:text-white">
                     Mayoreo
                   </Link>
@@ -73,6 +82,12 @@ export function Footer({ contact, services }: { contact: SiteContact; services: 
             <div>
               <p className="font-semibold text-white">Contacto</p>
               <ul className="mt-2 space-y-1.5 text-brand-100">
+                <li>
+                  <address className="not-italic leading-relaxed">{address}</address>
+                </li>
+                <li>
+                  <span className="block leading-relaxed">Horario: {hours}</span>
+                </li>
                 <li>
                   <a href={phoneHref(contact)} className="hover:text-white">
                     {contact.phone}

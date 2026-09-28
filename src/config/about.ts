@@ -6,9 +6,9 @@ export const aboutConfig = {
     neighborhood: "Constitución",
     postalCode: "83150",
     city: "Hermosillo",
-    state: "Son.",
+    state: "Sonora",
     /** Una línea para mapas y SEO. */
-    full: "C. Benito Juárez 177, Constitución, 83150 Hermosillo, Son.",
+    full: "C. Benito Juárez 177, Col. Constitución, Hermosillo, Sonora, C.P. 83150",
   },
   /** Enlace al lugar en Google Maps. */
   googleMapsUrl:
