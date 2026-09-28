@@ -19,6 +19,7 @@ export function buildLocalBusinessJsonLd(): Record<string, unknown> {
     url: storeNap.url,
     logo: logoUrl,
     image: imageUrl,
+    priceRange: "$$",
     telephone: storeNap.telephoneE164,
     email: storeNap.email,
     address: {
