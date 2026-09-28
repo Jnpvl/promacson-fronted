@@ -4,6 +4,7 @@ import { AudienceCards } from "@/components/home/audience-cards";
 import { CategoryGrid } from "@/components/home/category-grid";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { HeroCarousel } from "@/components/home/hero-carousel";
+import { HomeIntro } from "@/components/home/home-intro";
 import { OurServicesSection } from "@/components/home/our-services-section";
 import { TrustSection } from "@/components/home/trust-section";
 import { siteConfig } from "@/config/site";
@@ -30,6 +31,7 @@ export default async function HomePage() {
   return (
     <SiteShell>
       <HeroCarousel slides={heroSlides} />
+      <HomeIntro />
       <CategoryGrid categories={categories} />
       <FeaturedProducts products={featuredProducts} />
       <AudienceCards />

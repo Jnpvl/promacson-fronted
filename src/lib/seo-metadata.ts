@@ -7,7 +7,7 @@ export type PageSeoOptions = {
 };
 
 function resolveOgImage(image?: string | null): string {
-  const src = image?.trim() || siteConfig.brand.logo;
+  const src = image?.trim() || siteConfig.brand.ogImage || siteConfig.brand.logo;
   if (src.startsWith("http://") || src.startsWith("https://")) return src;
   return src.startsWith("/") ? src : `/${src}`;
 }
