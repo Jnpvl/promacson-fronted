@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/catalog/product-card";
 import { routes } from "@/lib/routes";
 import { getCategories, getCategoryBySlug } from "@/lib/services/categories.service";
 import { getProducts, mapProductToCard } from "@/lib/services/products.service";
+import { buildBreadcrumbJsonLd, catalogBreadcrumb, homeBreadcrumb } from "@/lib/seo-jsonld";
 import { withCanonical } from "@/lib/seo-metadata";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -35,19 +36,35 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
   if (!category) notFound();
 
   const products = await getProducts(slug);
+  const breadcrumbItems = [
+    homeBreadcrumb(),
+    catalogBreadcrumb(),
+    { name: category.name, item: routes.category(category.slug) },
+  ];
 
   return (
-    <SiteShell>
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-        <nav className="mb-4 text-sm text-text-muted">
-          <Link href={routes.catalog} className="hover:text-brand-700">
-            Catálogo
-          </Link>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbJsonLd(breadcrumbItems)),
+        }}
+      />
+      <SiteShell>
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+          <nav className="mb-4 text-sm text-text-muted">
+            <Link href={routes.home} className="hover:text-brand-700">
+              Inicio
+            </Link>
+            <span className="mx-2">/</span>
+            <Link href={routes.catalog} className="hover:text-brand-700">
+              Catálogo
+            </Link>
           <span className="mx-2">/</span>
           <span className="text-text">{category.name}</span>
-        </nav>
+          </nav>
 
-        <header className="mb-6">
+          <header className="mb-6">
           <h1 className="text-xl font-bold text-text sm:text-2xl">{category.name}</h1>
           {category.description ? (
             <p className="mt-1 text-sm text-text-muted">{category.description}</p>
@@ -57,14 +74,14 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
               {products.length} producto{products.length === 1 ? "" : "s"}
             </p>
           ) : null}
-        </header>
+          </header>
 
-        <CatalogSidebarMobile
+          <CatalogSidebarMobile
           categories={categories}
           active={{ categorySlug: slug }}
         />
 
-        <div className="mt-4 grid gap-6 lg:mt-6 lg:grid-cols-[220px_1fr]">
+          <div className="mt-4 grid gap-6 lg:mt-6 lg:grid-cols-[220px_1fr]">
           <aside className="hidden lg:block">
             <CatalogSidebar categories={categories} active={{ categorySlug: slug }} />
           </aside>
@@ -84,8 +101,9 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
               </div>
             )}
           </div>
+          </div>
         </div>
-      </div>
-    </SiteShell>
+      </SiteShell>
+    </>
   );
 }

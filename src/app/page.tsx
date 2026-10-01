@@ -13,6 +13,7 @@ import { getFeaturedProducts } from "@/lib/services/products.service";
 import { getServices } from "@/lib/services/services.service";
 import { getHeroSlides } from "@/lib/services/sliders.service";
 import { routes } from "@/lib/routes";
+import { buildHomeJsonLd } from "@/lib/home-jsonld";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.home, {
@@ -29,7 +30,12 @@ export default async function HomePage() {
   ]);
 
   return (
-    <SiteShell>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildHomeJsonLd()) }}
+      />
+      <SiteShell>
       <HeroCarousel slides={heroSlides} />
       <HomeIntro />
       <CategoryGrid categories={categories} />
@@ -37,6 +43,7 @@ export default async function HomePage() {
       <AudienceCards />
       <OurServicesSection services={services} />
       <TrustSection />
-    </SiteShell>
+      </SiteShell>
+    </>
   );
 }

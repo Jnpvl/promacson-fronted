@@ -4,6 +4,8 @@ import { siteConfig } from "@/config/site";
 export type PageSeoOptions = {
   /** Imagen para Open Graph / Twitter (URL absoluta o ruta `/…`). */
   image?: string | null;
+  /** Product is not in Next's Open Graph union; emit it through `other`. */
+  openGraphType?: "product";
 };
 
 function resolveOgImage(image?: string | null): string {
@@ -14,7 +16,10 @@ function resolveOgImage(image?: string | null): string {
 
 function resolveShareTitle(title: Metadata["title"]): string {
   if (typeof title === "string" && title.trim()) {
-    return `${title.trim()} | ${siteConfig.siteTitle}`;
+    const trimmed = title.trim();
+    return trimmed.endsWith(` | ${siteConfig.siteTitle}`)
+      ? trimmed
+      : `${trimmed} | ${siteConfig.siteTitle}`;
   }
   if (title && typeof title === "object") {
     if ("absolute" in title && typeof title.absolute === "string") return title.absolute;
@@ -53,21 +58,29 @@ export function withCanonical(
       : {};
   const twitter =
     metadata.twitter && typeof metadata.twitter === "object" ? metadata.twitter : {};
+  const isProduct = options?.openGraphType === "product";
+  const pageTitle =
+    typeof metadata.title === "string" &&
+    metadata.title.trim().endsWith(` | ${siteConfig.siteTitle}`)
+      ? { absolute: metadata.title.trim() }
+      : metadata.title;
 
   return {
     ...metadata,
+    ...(pageTitle !== metadata.title ? { title: pageTitle } : {}),
+    ...(isProduct ? { other: { ...metadata.other, "og:type": "product" } } : {}),
     alternates: {
       ...alternates,
       canonical,
     },
     openGraph: {
-      type: "website",
+      type: (isProduct ? undefined : "website") as "website" | undefined,
       locale: "es_MX",
       url: canonical,
       siteName: siteConfig.siteTitle,
       title: shareTitle,
       description: shareDescription,
-      images: [{ url: ogImage, alt: shareTitle }],
+      images: [{ url: ogImage, alt: shareTitle, width: 1200, height: 630 }],
       ...openGraph,
     },
     twitter: {
@@ -93,7 +106,7 @@ export function defaultSiteOpenGraph(): Pick<Metadata, "openGraph" | "twitter"> 
       siteName: siteConfig.siteTitle,
       title,
       description,
-      images: [{ url: image, alt: title }],
+      images: [{ url: image, alt: title, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

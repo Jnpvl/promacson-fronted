@@ -9,6 +9,7 @@ import { AddToQuoteButton } from "@/components/quote/add-to-quote-button";
 import { routes } from "@/lib/routes";
 import { getCategoryBySlug } from "@/lib/services/categories.service";
 import { getProductBySlug } from "@/lib/services/products.service";
+import { buildBreadcrumbJsonLd, buildProductJsonLd, catalogBreadcrumb, homeBreadcrumb } from "@/lib/seo-jsonld";
 import { withCanonical } from "@/lib/seo-metadata";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: product.seoTitle ?? product.name,
       description: product.seoDescription ?? product.description ?? undefined,
     },
-    { image: product.coverImageUrl },
+    { image: product.coverImageUrl, openGraphType: "product" },
   );
 }
 
@@ -35,14 +36,37 @@ export default async function ProductoPdpPage({ params }: Props) {
 
   const category = await getCategoryBySlug(product.categorySlug);
   const images = product.imageUrls.length ? product.imageUrls : [];
+  const breadcrumbItems = [
+    homeBreadcrumb(),
+    catalogBreadcrumb(),
+    ...(category
+      ? [{ name: category.name, item: routes.category(category.slug) }]
+      : []),
+    { name: product.name, item: routes.product(product.slug) },
+  ];
 
   return (
-    <SiteShell>
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-        <nav className="mb-4 text-sm text-text-muted">
-          <Link href={routes.catalog} className="hover:text-brand-700">
-            Catálogo
-          </Link>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildProductJsonLd(product)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildBreadcrumbJsonLd(breadcrumbItems)),
+        }}
+      />
+      <SiteShell>
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+          <nav className="mb-4 text-sm text-text-muted">
+            <Link href={routes.home} className="hover:text-brand-700">
+              Inicio
+            </Link>
+            <span className="mx-2">/</span>
+            <Link href={routes.catalog} className="hover:text-brand-700">
+              Catálogo
+            </Link>
           {category ? (
             <>
               <span className="mx-2">/</span>
@@ -53,9 +77,9 @@ export default async function ProductoPdpPage({ params }: Props) {
           ) : null}
           <span className="mx-2">/</span>
           <span className="text-text">{product.name}</span>
-        </nav>
+          </nav>
 
-        <div className="grid min-w-0 gap-10 lg:grid-cols-2">
+          <div className="grid min-w-0 gap-10 lg:grid-cols-2">
           <div className="min-w-0 max-w-full">
             <ProductGallery images={images} alt={product.name} />
           </div>
@@ -94,8 +118,9 @@ export default async function ProductoPdpPage({ params }: Props) {
               ) : null}
             </div>
           </div>
+          </div>
         </div>
-      </div>
-    </SiteShell>
+      </SiteShell>
+    </>
   );
 }
