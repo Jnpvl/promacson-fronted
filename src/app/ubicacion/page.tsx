@@ -5,20 +5,14 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
 import { storeNap } from "@/config/store-nap";
 import { getSiteContact } from "@/lib/site-contact";
-import {
-  facebookHref,
-  hasFacebook,
-  mailtoHref,
-  phoneHref,
-  whatsappHref,
-} from "@/lib/site-contact-utils";
+import { mailtoHref, whatsappHref } from "@/lib/site-contact-utils";
 import { routes } from "@/lib/routes";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.location, {
   title: "Ubicación",
   description:
-    "Visita Promacson Tienda en C. Benito Juárez 177, Col. Constitución, Hermosillo. Horario Lun–Vie 8:00–17:00. Cotiza insumos médicos y material de curación.",
+    "Visita Promacson Tienda en C. Benito Juárez 177, Col. Constitución, C.P. 83150, Hermosillo, Sonora. Horario Lun–Vie 8:00–17:00.",
 });
 
 const ctaOutlineClass =
@@ -26,8 +20,9 @@ const ctaOutlineClass =
 
 export default async function UbicacionPage() {
   const contact = await getSiteContact();
-  const address = contact.address?.trim() || storeNap.addressFull;
-  const hours = contact.businessHours?.trim() || storeNap.hoursDisplay;
+  const address = storeNap.addressFull;
+  const hours = storeNap.hoursDisplay;
+  const phoneHrefValue = `tel:${storeNap.telephoneE164}`;
 
   return (
     <SiteShell>
@@ -58,7 +53,7 @@ export default async function UbicacionPage() {
                 {address}
               </address>
               <Link
-                href={storeNap.googleMapsUrl}
+                href={storeNap.googleMapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 inline-flex text-sm font-medium text-brand-700 hover:underline"
@@ -79,10 +74,10 @@ export default async function UbicacionPage() {
                 Teléfono
               </p>
               <a
-                href={phoneHref(contact)}
+                href={phoneHrefValue}
                 className="mt-1 block text-base font-semibold text-brand-700 hover:underline"
               >
-                {contact.phone}
+                {storeNap.telephoneDisplay}
               </a>
             </div>
 
@@ -112,25 +107,23 @@ export default async function UbicacionPage() {
               </a>
             </div>
 
-            {hasFacebook(contact) ? (
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-text-muted">
-                  Facebook
-                </p>
-                <a
-                  href={facebookHref(contact)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-1 block text-sm font-medium text-brand-700 hover:underline"
-                >
-                  Visitar página
-                </a>
-              </div>
-            ) : null}
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wide text-text-muted">
+                Facebook
+              </p>
+              <a
+                href={storeNap.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 block text-sm font-medium text-brand-700 hover:underline"
+              >
+                Visitar página
+              </a>
+            </div>
 
             <div className="mt-2 flex flex-col gap-2 border-t border-border pt-4">
               <Button href={routes.quote}>Solicitar cotización</Button>
-              <a href={phoneHref(contact)} className={ctaOutlineClass}>
+              <a href={phoneHrefValue} className={ctaOutlineClass}>
                 Llamar ahora
               </a>
               <a
@@ -147,6 +140,26 @@ export default async function UbicacionPage() {
             </div>
           </div>
         </div>
+
+        <section
+          aria-labelledby="como-llegar-title"
+          className="mt-8 rounded-2xl border border-border bg-surface p-6 shadow-sm"
+        >
+          <h2 id="como-llegar-title" className="text-lg font-semibold text-text">
+            Cómo llegar
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">
+            Consulta la ruta desde tu ubicación y llega a nuestra tienda en C. Benito Juárez 177, Col. Constitución, Hermosillo.
+          </p>
+          <a
+            href={storeNap.googleMapsDirectionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex text-sm font-medium text-brand-700 hover:underline"
+          >
+            Abrir indicaciones en Google Maps →
+          </a>
+        </section>
       </div>
     </SiteShell>
   );

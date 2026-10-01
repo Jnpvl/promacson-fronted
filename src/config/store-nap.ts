@@ -31,8 +31,11 @@ export const storeNap = {
     opens: "08:00",
     closes: "17:00",
   },
+  facebookUrl: "https://www.facebook.com/people/Promacson-Tienda/61568475847370/",
   googleMapsUrl:
     "https://www.google.com/maps/place/Promacson+Tienda/data=!4m2!3m1!1s0x0:0x4e69af9c013e8113",
+  googleMapsDirectionsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=C.%20Benito%20Ju%C3%A1rez%20177%2C%20Col.%20Constituci%C3%B3n%2C%2083150%20Hermosillo%2C%20Sonora",
   googleMapsEmbedSrc:
     "https://www.google.com/maps?q=C.+Benito+Ju%C3%A1rez+177,+Constituci%C3%B3n,+83150+Hermosillo,+Son.&hl=es&z=16&output=embed",
 } as const;

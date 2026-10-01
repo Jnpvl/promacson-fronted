@@ -43,11 +43,6 @@ function staticUrls(): SitemapUrl[] {
   return [
     { loc: absoluteUrl(routes.home), changefreq: "weekly", priority: "1" },
     { loc: absoluteUrl(routes.catalog), changefreq: "weekly", priority: "0.9" },
-    {
-      loc: absoluteUrl(routes.catalogAllProducts),
-      changefreq: "weekly",
-      priority: "0.85",
-    },
     { loc: absoluteUrl(routes.services), changefreq: "weekly", priority: "0.85" },
     { loc: absoluteUrl(routes.about), changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.location), changefreq: "monthly", priority: "0.7" },

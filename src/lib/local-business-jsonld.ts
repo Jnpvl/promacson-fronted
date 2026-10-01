@@ -20,6 +20,13 @@ export function buildLocalBusinessJsonLd(): Record<string, unknown> {
     logo: logoUrl,
     image: imageUrl,
     priceRange: "$$",
+    hasMap: storeNap.googleMapsUrl,
+    sameAs: [storeNap.facebookUrl],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 29.103129,
+      longitude: -110.952874,
+    },
     telephone: storeNap.telephoneE164,
     email: storeNap.email,
     address: {
