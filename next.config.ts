@@ -37,6 +37,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.promacsontienda.com" }],
+        destination: "https://promacsontienda.com/:path*",
+        permanent: true,
+      },
+      {
         source: "/categorias",
         destination: "/catalogo",
         permanent: true,

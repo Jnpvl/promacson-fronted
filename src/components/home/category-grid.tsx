@@ -8,7 +8,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-text">Categorías</h2>
+          <h2 className="text-2xl font-bold text-text">Categorías de insumos médicos</h2>
           <p className="mt-1 text-sm text-text-muted">Encuentra insumos por especialidad y uso clínico</p>
         </div>
         <Link

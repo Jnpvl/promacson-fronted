@@ -8,4 +8,6 @@ export type Category = {
   productCount?: number;
   seoTitle?: string;
   seoDescription?: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
 };

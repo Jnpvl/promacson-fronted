@@ -10,6 +10,7 @@ import type { ServiceRecord } from "@/types/service";
 export const dynamic = "force-dynamic";
 
 const FETCH_TIMEOUT_MS = 8000;
+const STATIC_LASTMOD = "2026-10-01";
 
 type SitemapUrl = {
   loc: string;
@@ -41,13 +42,13 @@ function validLastmod(value: unknown): string | undefined {
 
 function staticUrls(): SitemapUrl[] {
   return [
-    { loc: absoluteUrl(routes.home), changefreq: "weekly", priority: "1" },
-    { loc: absoluteUrl(routes.catalog), changefreq: "weekly", priority: "0.9" },
-    { loc: absoluteUrl(routes.services), changefreq: "weekly", priority: "0.85" },
-    { loc: absoluteUrl(routes.about), changefreq: "monthly", priority: "0.7" },
-    { loc: absoluteUrl(routes.location), changefreq: "monthly", priority: "0.7" },
-    { loc: absoluteUrl(routes.wholesale), changefreq: "monthly", priority: "0.6" },
-    { loc: absoluteUrl(routes.quote), changefreq: "monthly", priority: "0.5" },
+    { loc: absoluteUrl(routes.home), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "1" },
+    { loc: absoluteUrl(routes.catalog), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.9" },
+    { loc: absoluteUrl(routes.services), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
+    { loc: absoluteUrl(routes.about), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
+    { loc: absoluteUrl(routes.location), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
+    { loc: absoluteUrl(routes.wholesale), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.6" },
+    { loc: absoluteUrl(routes.quote), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.5" },
   ];
 }
 

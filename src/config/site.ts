@@ -12,7 +12,7 @@ export const siteConfig = {
   tagline: "Insumos médicos y material de curación para instituciones de salud",
   /** Meta description home (~150–155 chars, SEO local Hermosillo). */
   description:
-    "Insumos médicos, material de curación y ortopedia en Hermosillo. Cotiza con Promacson Tienda sin checkout: atención en sucursal y propuesta personalizada.",
+    "Insumos médicos en Hermosillo: guantes, gasas estériles, jeringas, cubrebocas, material de curación y ortopedia. Arma tu cotización con Promacson.",
   /** H1 fijo del inicio (SEO local; el carrusel usa h2). */
   homeH1: "Insumos médicos y material de curación en Hermosillo",
   quoteCount: 2,

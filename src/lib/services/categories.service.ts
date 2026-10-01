@@ -15,6 +15,8 @@ export function mapCategoryRecord(row: CategoryRecord): Category {
     productCount: row.productCount,
     seoTitle: row.seoTitle,
     seoDescription: row.seoDescription,
+    metaTitle: row.metaTitle,
+    metaDescription: row.metaDescription,
   };
 }
 

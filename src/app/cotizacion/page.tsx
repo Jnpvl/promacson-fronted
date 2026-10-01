@@ -9,6 +9,7 @@ import { withCanonical } from "@/lib/seo-metadata";
 export const metadata: Metadata = withCanonical(routes.quote, {
   title: "Cotización",
   description: "Arma tu lista de insumos y recibe propuesta de un vendedor Promacson.",
+  robots: { index: false, follow: true },
 });
 
 export default function CotizacionPage() {

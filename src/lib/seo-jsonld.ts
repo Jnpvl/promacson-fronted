@@ -27,7 +27,7 @@ function absoluteMediaUrl(path: string): string {
   return absoluteUrl(resolved);
 }
 
-function plainText(value: string | null | undefined): string | undefined {
+export function plainProductDescription(value: string | null | undefined): string | undefined {
   const cleaned = value
     ?.replace(/<[^>]*>/g, " ")
     .replace(/\bCotiza disponibilidad\.?/gi, "")
@@ -51,7 +51,7 @@ export function buildProductJsonLd(product: ProductRecord): Record<string, unkno
     "@type": "Product",
     "@id": `${productUrl}#product`,
     name: product.name,
-    description: plainText(product.description),
+    description: plainProductDescription(product.description),
     image: images,
     brand: deriveBrand(product.name)
       ? { "@type": "Brand", name: deriveBrand(product.name) }
@@ -83,4 +83,30 @@ export function homeBreadcrumb(): BreadcrumbItem {
 
 export function catalogBreadcrumb(): BreadcrumbItem {
   return { name: "Catálogo", item: routes.catalog };
+}
+
+export function buildCategoryCollectionJsonLd(
+  category: { slug: string },
+  products: ProductRecord[],
+  name: string,
+): Record<string, unknown> {
+  const categoryUrl = absoluteUrl(routes.category(category.slug));
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${categoryUrl}#page`,
+    url: categoryUrl,
+    name,
+    inLanguage: "es-MX",
+    isPartOf: { "@id": `${siteOrigin}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: products.length,
+      itemListElement: products.map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: absoluteUrl(routes.product(product.slug)),
+      })),
+    },
+  };
 }
