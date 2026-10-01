@@ -74,7 +74,7 @@ export function withCanonical(
       canonical,
     },
     openGraph: {
-      type: (isProduct ? "product" : "website") as never,
+      ...(isProduct ? {} : { type: "website" as const }),
       locale: "es_MX",
       url: canonical,
       siteName: siteConfig.siteTitle,
