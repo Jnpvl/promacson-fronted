@@ -26,6 +26,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [uploadRemotePattern(apiUrl)],
     minimumCacheTTL: 60,
   },
+  async headers() {
+    const noindex = [{ key: "X-Robots-Tag", value: "noindex, nofollow" }];
+    return [
+      { source: "/admin", headers: noindex },
+      { source: "/admin/:path*", headers: noindex },
+    ];
+  },
   async rewrites() {
     return [
       {
