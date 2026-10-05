@@ -196,6 +196,14 @@ export function QuoteCartView() {
         <Button type="submit" className="w-full justify-center" disabled={loading || !items.length}>
           {loading ? "Enviando…" : "Enviar solicitud"}
         </Button>
+
+        <p className="text-xs text-text-muted">
+          Al enviar tus datos aceptas el{" "}
+          <Link href={routes.privacy} className="font-medium text-brand-700 underline">
+            Aviso de privacidad
+          </Link>
+          .
+        </p>
       </form>
     </div>
   );

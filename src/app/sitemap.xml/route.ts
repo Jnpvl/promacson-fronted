@@ -11,6 +11,7 @@ export const dynamic = "force-dynamic";
 
 const FETCH_TIMEOUT_MS = 8000;
 const STATIC_LASTMOD = "2026-10-01";
+const LEGAL_LASTMOD = "2026-10-04";
 
 type SitemapUrl = {
   loc: string;
@@ -49,6 +50,8 @@ function staticUrls(): SitemapUrl[] {
     { loc: absoluteUrl(routes.location), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.wholesale), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.6" },
     { loc: absoluteUrl(routes.quote), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.5" },
+    { loc: absoluteUrl(routes.privacy), lastmod: LEGAL_LASTMOD, changefreq: "yearly", priority: "0.3" },
+    { loc: absoluteUrl(routes.terms), lastmod: LEGAL_LASTMOD, changefreq: "yearly", priority: "0.3" },
   ];
 }
 

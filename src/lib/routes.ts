@@ -11,6 +11,8 @@ export const routes = {
   about: "/nosotros",
   location: "/ubicacion",
   services: "/servicios",
+  privacy: "/aviso-de-privacidad",
+  terms: "/terminos",
   serviceDetail: (slug: string) => `/servicios/${slug}`,
   admin: {
     root: "/admin",

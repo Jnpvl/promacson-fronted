@@ -125,9 +125,25 @@ export function Footer({ contact, services }: { contact: SiteContact; services: 
           </div>
         </div>
 
-        <p className="mt-6 border-t border-brand-700 pt-4 text-center text-xs text-brand-100">
-          © {new Date().getFullYear()} {siteConfig.siteTitle}
-        </p>
+        <div className="mt-6 flex flex-col items-center gap-2 border-t border-brand-700 pt-4 text-center text-xs text-brand-100 sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.siteTitle}
+          </p>
+          <nav aria-label="Información legal">
+            <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+              <li>
+                <Link href={routes.privacy} className="hover:text-white">
+                  Aviso de privacidad
+                </Link>
+              </li>
+              <li>
+                <Link href={routes.terms} className="hover:text-white">
+                  Términos y condiciones
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </footer>
   );
