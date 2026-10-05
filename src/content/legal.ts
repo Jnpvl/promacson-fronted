@@ -31,13 +31,13 @@ export const privacyDoc: LegalDoc = {
     {
       "t": "p",
       "x": [
-        "Este sitio no recopila información personal de forma automática. No utilizamos cookies de rastreo, herramientas de analítica ni píxeles publicitarios."
+        "Este sitio no recopila información personal de forma automática. No utilizamos cookies de rastreo propias, herramientas de analítica ni píxeles publicitarios. Algunos contenidos de terceros, como los mapas de Google, pueden usar sus propias cookies."
       ]
     },
     {
       "t": "p",
       "x": [
-        "Solo recibimos los datos que usted decide compartirnos voluntariamente, por ejemplo al escribirnos por WhatsApp, llamarnos por teléfono o enviar un formulario de contacto o de cotización."
+        "Solo recibimos los datos que usted decide compartirnos voluntariamente, por ejemplo al escribirnos por WhatsApp, llamarnos por teléfono o enviar un formulario de contacto, cotización o mayoreo."
       ]
     },
     {
@@ -47,7 +47,7 @@ export const privacyDoc: LegalDoc = {
     {
       "t": "p",
       "x": [
-        "Usamos esos datos únicamente para responder a su mensaje, elaborar su cotización y dar seguimiento a su pedido. No vendemos ni compartimos su información con terceros, salvo cuando la ley nos lo exija. Conservamos sus datos solo el tiempo necesario para atender su solicitud."
+        "Usamos esos datos únicamente para responder a su mensaje, elaborar su cotización y dar seguimiento a su pedido. No vendemos su información ni la compartimos con terceros con fines comerciales; solo se procesa mediante los servicios técnicos necesarios para operar el sitio y enviarnos su mensaje, o cuando la ley lo exija. Conservamos sus datos solo el tiempo necesario para atender su solicitud."
       ]
     },
     {
