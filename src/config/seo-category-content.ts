@@ -2,6 +2,8 @@ export type CategorySeoFallback = {
   metaTitle: string;
   metaDescription: string;
   h1: string;
+  /** H1 visible que reemplaza al nombre de la categoría (el nombre sigue en migas y tarjetas). */
+  h1Override?: string;
   h2: string[];
   introHtml: string;
 };
@@ -15,9 +17,10 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     introHtml: "En Promacson Tienda reunimos el material de curación de uso diario en consultorios, clínicas y botiquines de Hermosillo: gasas estériles y no estériles, apósitos, algodón, torundas, hisopos, cintas adhesivas, vendas elásticas y vendas enyesadas, principalmente de la marca Protec. Cada producto indica su medida y presentación, y puedes agregarlo a tu cotización. Para limpiar y desinfectar consulta <a href=\"/catalogo/antisepticos-y-desinfectantes\">antisépticos y desinfectantes</a>; para guantes y jeringas, revisa <a href=\"/catalogo/equipo-medico\">equipo médico</a>.",
   },
   "ortopedia-y-soportes": {
-    metaTitle: "Ortopedia y soportes Daonsa en Hermosillo",
-    metaDescription: "Cabestrillos, collares cervicales, férulas de muñeca, inmovilizadores de hombro, correas de clavícula y suspensorios Daonsa. Ortopedia en Hermosillo.",
+    metaTitle: "Tienda de ortopedia en Hermosillo: soportes Daonsa | Promacson",
+    metaDescription: "Tienda de ortopedia en Hermosillo: cabestrillo, collar cervical, férula de muñeca, inmovilizador de hombro y más soportes Daonsa. C. Benito Juárez 177, Col. Constitución.",
     h1: "Ortopedia y soportes",
+    h1Override: "Ortopedia en Hermosillo: soportes y férulas",
     h2: ["Soportes ortopédicos Daonsa", "Cómo elegir un soporte ortopédico"],
     introHtml: "Si estás en recuperación por una lesión, una cirugía o necesitas apoyar una articulación, en Promacson Tienda encontrarás soportes ortopédicos de la marca Daonsa: cabestrillos, collares cervicales, férulas de muñeca, inmovilizadores de hombro, correas para clavícula y suspensorios. Atendemos a pacientes y consultorios de Hermosillo, y varios modelos manejan tallas. Para vendajes y fijación complementa tu compra con <a href=\"/catalogo/material-de-curacion\">material de curación</a>, o conoce las <a href=\"/catalogo/medias-de-compresion\">medias de compresión</a> para el cuidado de las piernas.",
   },

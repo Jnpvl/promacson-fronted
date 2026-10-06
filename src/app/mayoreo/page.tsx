@@ -6,9 +6,9 @@ import { routes } from "@/lib/routes";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.wholesale, {
-  title: "Mayoreo",
+  title: "Insumos médicos por mayoreo en Hermosillo | Promacson Tienda",
   description:
-    "Compras por volumen para hospitales, clínicas y distribuidores. Contacto comercial Promacson.",
+    "Insumos médicos y material de curación por volumen para hospitales, clínicas y distribuidores en Hermosillo y Sonora. Pide tu cotización.",
 });
 
 export default function MayoreoPage() {
@@ -16,7 +16,7 @@ export default function MayoreoPage() {
     <SiteShell>
       <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:py-14">
         <PageHeader
-          title="Compra mayoreo"
+          title="Insumos médicos por mayoreo"
           subtitle="Para clínicas, hospitales y distribuidores que abastecen por volumen. Un vendedor te atiende con precios, contratos y logística a tu medida."
         />
         <WholesaleForm />

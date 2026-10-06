@@ -9,8 +9,9 @@ import { getProducts, mapProductToCard } from "@/lib/services/products.service";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.catalogAllProducts, {
-  title: "Todos los productos",
-  description: "Explora todo el catálogo de insumos médicos Promacson por categoría.",
+  title: "Todos los productos: insumos médicos | Promacson Tienda",
+  description:
+    "Catálogo completo de insumos médicos en Hermosillo: gasas, guantes, apósitos Cutimed, medias Jobst, soportes Daonsa y más.",
 });
 
 export default async function CatalogoTodosProductosPage() {

@@ -23,9 +23,12 @@ type CategoryCardProps = {
   category: Category;
   /** compact: home · default: página catálogo */
   variant?: "default" | "compact";
+  /** Texto visible/ancla alternativo (no cambia el nombre de la categoría en la API). */
+  label?: string;
 };
 
-export function CategoryCard({ category, variant = "default" }: CategoryCardProps) {
+export function CategoryCard({ category, variant = "default", label }: CategoryCardProps) {
+  const title = label?.trim() || category.name;
   const gradient = CATEGORY_GRADIENTS[category.slug] ?? DEFAULT_GRADIENT;
   const isCompact = variant === "compact";
 
@@ -41,7 +44,7 @@ export function CategoryCard({ category, variant = "default" }: CategoryCardProp
           {category.imageUrl ? (
             <MediaImage
               src={category.imageUrl}
-              alt={category.name}
+              alt={title}
               fill
               className={`${categoryCardImageClass} transition duration-500 group-hover:scale-105`}
               sizes={isCompact ? "(max-width: 640px) 50vw, 20vw" : "(max-width: 1024px) 50vw, 33vw"}
@@ -78,7 +81,7 @@ export function CategoryCard({ category, variant = "default" }: CategoryCardProp
               isCompact ? "line-clamp-2 flex-1 text-sm" : "text-lg sm:text-xl"
             }`}
           >
-            {category.name}
+            {title}
           </h3>
 
           {!isCompact ? (

@@ -7,9 +7,9 @@ import { getCategories } from "@/lib/services/categories.service";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.catalog, {
-  title: "Catálogo",
+  title: "Catálogo de insumos médicos en Hermosillo | Promacson Tienda",
   description:
-    "Explora categorías de insumos médicos, apósitos y material clínico para instituciones de salud.",
+    "Material de curación, ortopedia Daonsa, medias de compresión, antisépticos y equipo médico en Hermosillo. Elige una categoría y arma tu cotización.",
 });
 
 export default async function CatalogoPage() {
@@ -19,7 +19,7 @@ export default async function CatalogoPage() {
     <SiteShell>
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         <header className="mb-6">
-          <h1 className="text-xl font-bold text-text sm:text-2xl">Catálogo</h1>
+          <h1 className="text-xl font-bold text-text sm:text-2xl">Catálogo de insumos médicos</h1>
           <p className="mt-1 text-sm text-text-muted">
             Elige una categoría o{" "}
             <Link href={routes.catalogAllProducts} className="font-medium text-brand-700 hover:underline">

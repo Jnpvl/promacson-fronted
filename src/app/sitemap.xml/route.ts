@@ -49,7 +49,6 @@ function staticUrls(): SitemapUrl[] {
     { loc: absoluteUrl(routes.about), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.location), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.wholesale), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.6" },
-    { loc: absoluteUrl(routes.quote), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.5" },
     { loc: absoluteUrl(routes.privacy), lastmod: LEGAL_LASTMOD, changefreq: "yearly", priority: "0.3" },
     { loc: absoluteUrl(routes.terms), lastmod: LEGAL_LASTMOD, changefreq: "yearly", priority: "0.3" },
   ];
@@ -104,6 +103,29 @@ async function fetchCatalogUrls(): Promise<SitemapUrl[]> {
   }
 }
 
+/** Rutas con noindex: nunca en el sitemap (contradice la señal a Google). */
+const NOINDEX_PATHS = [routes.quote, routes.search, routes.admin.root];
+
+function isNoindexLoc(loc: string): boolean {
+  let pathname: string;
+  try {
+    pathname = new URL(loc).pathname.replace(/\/$/, "") || "/";
+  } catch {
+    return false;
+  }
+  return NOINDEX_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
+/** Quita rutas noindex y <loc> duplicados (conserva la primera aparición). */
+function sitemapUrls(urls: SitemapUrl[]): SitemapUrl[] {
+  const seen = new Set<string>();
+  return urls.filter((u) => {
+    if (isNoindexLoc(u.loc) || seen.has(u.loc)) return false;
+    seen.add(u.loc);
+    return true;
+  });
+}
+
 function toXml(urls: SitemapUrl[]): string {
   const body = urls
     .map((u) => {
@@ -123,7 +145,7 @@ function toXml(urls: SitemapUrl[]): string {
 
 export async function GET() {
   try {
-    const urls = [...staticUrls(), ...(await fetchCatalogUrls())];
+    const urls = sitemapUrls([...staticUrls(), ...(await fetchCatalogUrls())]);
     const xml = toXml(urls);
 
     return new Response(xml, {
@@ -136,7 +158,7 @@ export async function GET() {
   } catch (err) {
     // Nunca 500: al menos páginas estáticas.
     console.warn("[sitemap] unexpected failure, returning static urls", err);
-    const xml = toXml(staticUrls());
+    const xml = toXml(sitemapUrls(staticUrls()));
     return new Response(xml, {
       status: 200,
       headers: {

@@ -14,12 +14,15 @@ function resolveOgImage(image?: string | null): string {
   return src.startsWith("/") ? src : `/${src}`;
 }
 
+/** Títulos que ya traen la marca al final (" | Promacson Tienda" o " | Promacson") no llevan sufijo extra. */
+function hasBrandSuffix(title: string): boolean {
+  return title.endsWith(` | ${siteConfig.siteTitle}`) || title.endsWith(` | ${siteConfig.name}`);
+}
+
 function resolveShareTitle(title: Metadata["title"]): string {
   if (typeof title === "string" && title.trim()) {
     const trimmed = title.trim();
-    return trimmed.endsWith(` | ${siteConfig.siteTitle}`)
-      ? trimmed
-      : `${trimmed} | ${siteConfig.siteTitle}`;
+    return hasBrandSuffix(trimmed) ? trimmed : `${trimmed} | ${siteConfig.siteTitle}`;
   }
   if (title && typeof title === "object") {
     if ("absolute" in title && typeof title.absolute === "string") return title.absolute;
@@ -60,8 +63,7 @@ export function withCanonical(
     metadata.twitter && typeof metadata.twitter === "object" ? metadata.twitter : {};
   const isProduct = options?.openGraphType === "product";
   const pageTitle =
-    typeof metadata.title === "string" &&
-    metadata.title.trim().endsWith(` | ${siteConfig.siteTitle}`)
+    typeof metadata.title === "string" && hasBrandSuffix(metadata.title.trim())
       ? { absolute: metadata.title.trim() }
       : metadata.title;
 

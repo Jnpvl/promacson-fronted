@@ -53,6 +53,7 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
   const guidance = categorySeoGuidance[slug] ?? [];
   const h2s = fallback?.h2 ?? [];
   const displayName = fallback?.h1 && !category.name.trim() ? fallback.h1 : category.name;
+  const h1Text = fallback?.h1Override?.trim() || displayName;
   const breadcrumbItems = [
     homeBreadcrumb(),
     catalogBreadcrumb(),
@@ -88,7 +89,7 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
           </nav>
 
           <header className="mb-6">
-            <h1 className="text-xl font-bold text-text sm:text-2xl">{displayName}</h1>
+            <h1 className="text-xl font-bold text-text sm:text-2xl">{h1Text}</h1>
             {category.description ? (
               <p className="mt-1 text-sm text-text-muted">{category.description}</p>
             ) : null}

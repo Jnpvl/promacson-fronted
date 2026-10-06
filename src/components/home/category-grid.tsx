@@ -3,6 +3,11 @@ import { CategoryCard } from "@/components/catalog/category-card";
 import { routes } from "@/lib/routes";
 import type { Category } from "@/types/catalog";
 
+/** Texto ancla en el inicio por slug (SEO local); el nombre en la API no cambia. */
+const HOME_CATEGORY_LABELS: Record<string, string> = {
+  "ortopedia-y-soportes": "Ortopedia en Hermosillo",
+};
+
 export function CategoryGrid({ categories }: { categories: Category[] }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
@@ -25,7 +30,12 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
       ) : (
         <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-5">
           {categories.map((category) => (
-            <CategoryCard key={category.slug} category={category} variant="compact" />
+            <CategoryCard
+              key={category.slug}
+              category={category}
+              variant="compact"
+              label={HOME_CATEGORY_LABELS[category.slug]}
+            />
           ))}
         </div>
       )}

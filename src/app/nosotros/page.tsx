@@ -17,7 +17,7 @@ import { routes } from "@/lib/routes";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.about, {
-  title: "Nosotros",
+  title: "Nosotros: insumos médicos en Hermosillo | Promacson Tienda",
   description:
     "Conoce Promacson Tienda: distribución de insumos médicos y material de curación para instituciones de salud en Sonora.",
 });
