@@ -60,6 +60,7 @@ export default async function ProductoPdpPage({ params }: Props) {
   const hasVariants = /talla|tallas|mmhg|rodilla|muslo|chico|mediano|grande|blanco|negro|\b\d+\s*ml\b/i.test(
     `${product.name} ${product.description ?? ""}`,
   );
+  const productJsonLd = buildProductJsonLd(product);
   const breadcrumbItems = [
     homeBreadcrumb(),
     catalogBreadcrumb(),
@@ -69,10 +70,12 @@ export default async function ProductoPdpPage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildProductJsonLd(product)) }}
-      />
+      {productJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        />
+      ) : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
