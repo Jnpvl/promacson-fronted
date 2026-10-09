@@ -45,6 +45,7 @@ function staticUrls(): SitemapUrl[] {
   return [
     { loc: absoluteUrl(routes.home), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "1" },
     { loc: absoluteUrl(routes.catalog), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.9" },
+    { loc: absoluteUrl(routes.catalogAllProducts), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
     { loc: absoluteUrl(routes.services), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
     { loc: absoluteUrl(routes.about), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.location), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
