@@ -7,9 +7,11 @@ import { routes } from "@/lib/routes";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.services, {
-  title: { absolute: "Servicios | Promacson Tienda · Hermosillo" },
+  title: {
+    absolute: "Cotización y mayoreo de insumos médicos en Hermosillo | Promacson",
+  },
   description:
-    "Cotización y suministro de insumos médicos, mayoreo para clínicas y hospitales, asesoría de producto y aliado clínico en Hermosillo.",
+    "Cotización y suministro de insumos médicos, mayoreo para clínicas y hospitales, y asesoría de producto en Hermosillo. Promacson Tienda.",
 });
 
 export default async function ServiciosPage() {
@@ -19,7 +21,7 @@ export default async function ServiciosPage() {
     <SiteShell>
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
         <PageHeader
-          title="Nuestros servicios"
+          title="Servicios de insumos médicos en Hermosillo"
           subtitle="Cotización, mayoreo, asesoría de producto y un aliado clínico en el mismo domicilio. Elige cómo podemos apoyarte."
         />
         <ServiciosOfferings contact={contact} />
