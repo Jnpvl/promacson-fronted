@@ -6,6 +6,8 @@ import { ProductGallery } from "@/components/catalog/product-gallery";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddToQuoteButton } from "@/components/quote/add-to-quote-button";
+import { categorySeoFallbacks } from "@/config/seo-category-content";
+import { categorySeoGuidance } from "@/config/seo-category-guidance";
 import { routes } from "@/lib/routes";
 import { getCategoryBySlug } from "@/lib/services/categories.service";
 import { getProductBySlug, getProducts } from "@/lib/services/products.service";
@@ -35,9 +37,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   );
 }
 
-function firstSentence(value: string): string {
-  const match = value.match(/^(.+?[.!?])(?:\s|$)/);
-  return match?.[1] ?? value;
+/** Texto propio del producto solo si existe y no repite la descripción. */
+function ownSectionText(value: string | null | undefined, description: string | undefined): string | undefined {
+  const text = plainProductDescription(value);
+  if (!text) return undefined;
+  if (description) {
+    const norm = (v: string) => v.toLowerCase().replace(/\s+/g, " ").trim();
+    const a = norm(text);
+    const b = norm(description);
+    if (a === b || b.includes(a) || a.includes(b)) return undefined;
+  }
+  return text;
+}
+
+/** Texto "Cómo elegir" de la categoría (mismo que se muestra en /catalogo/<slug>). */
+function categoryChoosingText(categorySlug: string | undefined): string | undefined {
+  if (!categorySlug) return undefined;
+  const headings = categorySeoFallbacks[categorySlug]?.h2.slice(1) ?? [];
+  const guidance = categorySeoGuidance[categorySlug] ?? [];
+  const index = headings.findIndex((heading) => /elegir/i.test(heading));
+  return (index >= 0 ? guidance[index] : undefined) ?? guidance[0];
 }
 
 export default async function ProductoPdpPage({ params }: Props) {
@@ -51,15 +70,9 @@ export default async function ProductoPdpPage({ params }: Props) {
     : [];
   const images = product.imageUrls.length ? product.imageUrls : [];
   const description = plainProductDescription(product.description);
-  const purposeText = description
-    ? firstSentence(description)
-    : "Consulta la ficha y solicita una cotización para conocer la disponibilidad del producto.";
-  const presentationText = description && description !== purposeText
-    ? description.slice(purposeText.length).trim()
-    : `${product.badge}. Consulta la medida o presentación indicada en la ficha.`;
-  const hasVariants = /talla|tallas|mmhg|rodilla|muslo|chico|mediano|grande|blanco|negro|\b\d+\s*ml\b/i.test(
-    `${product.name} ${product.description ?? ""}`,
-  );
+  const purposeText = ownSectionText(product.purpose, description);
+  const presentationText = ownSectionText(product.presentation, description);
+  const choosingText = categoryChoosingText(category?.slug ?? product.categorySlug);
   const productJsonLd = buildProductJsonLd(product);
   const breadcrumbItems = [
     homeBreadcrumb(),
@@ -145,25 +158,26 @@ export default async function ProductoPdpPage({ params }: Props) {
             </div>
           </div>
 
-          <section className="mt-12 max-w-4xl">
-            <h2 className="text-xl font-bold text-text sm:text-2xl">Para qué sirve</h2>
-            <p className="mt-2 text-sm leading-relaxed text-text-muted">{purposeText}</p>
-          </section>
+          {purposeText ? (
+            <section className="mt-12 max-w-4xl">
+              <h2 className="text-xl font-bold text-text sm:text-2xl">Para qué sirve</h2>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">{purposeText}</p>
+            </section>
+          ) : null}
 
-          <section className="mt-8 max-w-4xl">
-            <h2 className="text-xl font-bold text-text sm:text-2xl">Presentación</h2>
-            <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-text-muted">
-              {presentationText}
-            </p>
-          </section>
+          {presentationText ? (
+            <section className="mt-8 max-w-4xl">
+              <h2 className="text-xl font-bold text-text sm:text-2xl">Presentación</h2>
+              <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-text-muted">
+                {presentationText}
+              </p>
+            </section>
+          ) : null}
 
-          {hasVariants ? (
+          {choosingText ? (
             <section className="mt-8 max-w-4xl">
               <h2 className="text-xl font-bold text-text sm:text-2xl">Cómo elegir</h2>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                Compara la talla, medida, capacidad o variante que necesitas con las opciones de esta categoría.
-                Si tienes dudas, solicita orientación al preparar tu cotización.
-              </p>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">{choosingText}</p>
             </section>
           ) : null}
 

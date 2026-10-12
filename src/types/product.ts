@@ -20,6 +20,10 @@ export type ProductRecord = {
   metaDescription: string | null;
   seoTitle: string;
   seoDescription: string;
+  /** Opcional: texto propio de "Para qué sirve" (si el backend lo expone). */
+  purpose?: string | null;
+  /** Opcional: texto propio de "Presentación" (si el backend lo expone). */
+  presentation?: string | null;
   createdAt: string;
   updatedAt: string;
 };
