@@ -17,9 +17,9 @@ import { routes } from "@/lib/routes";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.about, {
-  title: "Nosotros: insumos médicos en Hermosillo | Promacson Tienda",
+  title: "Quiénes somos: tienda médica en Hermosillo",
   description:
-    "Conoce Promacson Tienda: distribución de insumos médicos y material de curación para instituciones de salud en Sonora.",
+    "Promacson Tienda es una tienda médica en Hermosillo: insumos médicos, material de curación y ortopedia en C. Benito Juárez 177, Col. Constitución.",
 });
 
 export default async function NosotrosPage() {
@@ -29,7 +29,7 @@ export default async function NosotrosPage() {
     <SiteShell>
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
         <PageHeader
-          title="Nosotros"
+          title="Promacson Tienda, tienda médica en Hermosillo"
           subtitle="Más de tres décadas apoyando a instituciones de salud con insumos médicos, curación y soluciones de abastecimiento."
         />
 
