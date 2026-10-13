@@ -9,8 +9,8 @@ export function HomeIntro() {
           {siteConfig.homeH1}
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-text-muted sm:text-base">
-          Catálogo de insumos médicos, material de curación y ortopedia. Solicita cotización —
-          sin compra en línea.
+          Material de curación, equipo médico, antisépticos y ortopedia en C. Benito Juárez 177,
+          Col. Constitución. Solicita cotización por pieza o por caja.
         </p>
       </div>
     </section>

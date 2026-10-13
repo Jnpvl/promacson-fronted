@@ -20,6 +20,10 @@ export default async function CatalogoPage() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         <header className="mb-6">
           <h1 className="text-xl font-bold text-text sm:text-2xl">Catálogo de insumos médicos</h1>
+          <p className="mt-2 text-sm text-text-muted sm:text-base">
+            Catálogo de nuestra tienda médica en Hermosillo: insumos médicos, material de curación,
+            equipo médico y ortopedia. Elige una categoría y arma tu cotización.
+          </p>
           <p className="mt-1 text-sm text-text-muted">
             Elige una categoría o{" "}
             <Link href={routes.catalogAllProducts} className="font-medium text-brand-700 hover:underline">

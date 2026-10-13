@@ -29,11 +29,11 @@ export function buildHomeJsonLd(): Record<string, unknown> {
         publisher: { "@id": `${siteOrigin}/#organization` },
       },
       {
-        "@type": "Store",
+        "@type": ["Store", "MedicalBusiness"],
         "@id": `${siteOrigin}/#store`,
         name: storeNap.name,
         description:
-          "Tienda de insumos médicos, material de curación, ortopedia y equipo médico en Hermosillo, Sonora.",
+          "Tienda médica en Hermosillo: insumos médicos, material de curación, equipo médico, antisépticos y ortopedia.",
         url: `${siteOrigin}/`,
         image: `${siteOrigin}/og/og-default.png`,
         logo: `${siteOrigin}/brand/logo.png`,
@@ -54,6 +54,18 @@ export function buildHomeJsonLd(): Record<string, unknown> {
           latitude: 29.103129,
           longitude: -110.952874,
         },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Catálogo de insumos médicos",
+          url: `${siteOrigin}/catalogo`,
+        },
+        knowsAbout: [
+          "insumos médicos",
+          "material de curación",
+          "equipo médico",
+          "ortopedia",
+          "medias de compresión",
+        ],
         areaServed: { "@type": "State", name: "Sonora" },
         openingHoursSpecification: [
           {

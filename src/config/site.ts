@@ -9,12 +9,13 @@ export const siteConfig = {
   siteTitle: "Promacson Tienda",
   /** Title absoluto de la página de inicio (SEO local) */
   homeSeoTitle: "Tienda médica e insumos médicos en Hermosillo | Promacson",
-  tagline: "Insumos médicos y material de curación para instituciones de salud",
+  tagline:
+    "Tienda médica en Hermosillo: insumos médicos y material de curación para consultorios, clínicas y hospitales.",
   /** Meta description home (~150–155 chars, SEO local Hermosillo). */
   description:
     "Insumos médicos en Hermosillo: guantes, gasas estériles, jeringas, cubrebocas, material de curación y ortopedia. Arma tu cotización con Promacson.",
   /** H1 fijo del inicio (SEO local; el carrusel usa h2). */
-  homeH1: "Insumos médicos y material de curación en Hermosillo",
+  homeH1: "Tienda médica e insumos médicos en Hermosillo",
   quoteCount: 2,
   brand: {
     primary: "#005F71",

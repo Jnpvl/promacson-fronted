@@ -63,7 +63,12 @@ export function Footer({ contact, services }: { contact: SiteContact; services: 
                   </Link>
                 </li>
                 <li>
-                  <Link href={routes.location} className="hover:text-white">
+                  <Link
+                    href={routes.location}
+                    className="hover:text-white"
+                    title="Ubicación de la tienda médica en Hermosillo"
+                    aria-label="Ubicación de la tienda médica en Hermosillo"
+                  >
                     Ubicación
                   </Link>
                 </li>

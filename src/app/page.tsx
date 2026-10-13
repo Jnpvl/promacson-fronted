@@ -4,6 +4,7 @@ import { AudienceCards } from "@/components/home/audience-cards";
 import { CategoryGrid } from "@/components/home/category-grid";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { HeroCarousel } from "@/components/home/hero-carousel";
+import { HomeStoreText } from "@/components/home/home-store-text";
 import { HomeIntro } from "@/components/home/home-intro";
 import { TargetCategoryLinks } from "@/components/home/target-category-links";
 import { OurServicesSection } from "@/components/home/our-services-section";
@@ -41,6 +42,7 @@ export default async function HomePage() {
       <HomeIntro />
       <TargetCategoryLinks />
       <CategoryGrid categories={categories} />
+      <HomeStoreText />
       <FeaturedProducts products={featuredProducts} />
       <AudienceCards />
       <OurServicesSection services={services} />
