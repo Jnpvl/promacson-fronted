@@ -4,7 +4,7 @@ import { resolveMediaUrl } from "@/lib/media-url";
 import type { ProductRecord } from "@/types/product";
 
 const siteOrigin = storeNap.url.replace(/\/$/, "");
-const knownBrands = ["Protec", "Daonsa", "Jobst", "Cutimed", "Hypafix", "Dermodine"] as const;
+const knownBrands = ["Protec", "Daonsa", "Jobst", "Cutimed", "Hypafix", "Dermodine", "Handy", "Hergom"] as const;
 
 type BreadcrumbItem = { name: string; item: string };
 
@@ -41,74 +41,28 @@ function deriveBrand(name: string): string | undefined {
   return match;
 }
 
-/** Campos de precio/stock opcionales: la API actual no los expone (catálogo solo cotización). */
-type ProductPriceFields = {
-  price?: unknown;
-  stock?: unknown;
-  inStock?: unknown;
-  priceValidUntil?: unknown;
-  itemCondition?: unknown;
-};
-
-/** Precio válido (> 0) o null. Sin precio válido no se emite el nodo Product. */
-export function validProductPrice(product: ProductRecord): number | null {
-  const raw = (product as ProductRecord & ProductPriceFields).price;
-  const value =
-    typeof raw === "number" ? raw : typeof raw === "string" && raw.trim() ? Number(raw) : Number.NaN;
-  return Number.isFinite(value) && value > 0 ? value : null;
-}
-
-function productAvailability(product: ProductRecord): string {
-  const extra = product as ProductRecord & ProductPriceFields;
-  const outOfStock =
-    extra.inStock === false ||
-    (typeof extra.stock === "number" && Number.isFinite(extra.stock) && extra.stock <= 0);
-  return outOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
-}
-
 /**
- * JSON-LD Product solo cuando hay precio válido (Google exige offers/review/aggregateRating).
- * Sin precio (solo cotización) devuelve null y la página omite el nodo Product.
+ * JSON-LD Product sin offers ni precio: Promacson no publica precios (catálogo solo cotización).
+ * Se emite siempre (nombre, imagen, descripción, sku, marca si se conoce, url).
  */
-export function buildProductJsonLd(product: ProductRecord): Record<string, unknown> | null {
-  const price = validProductPrice(product);
-  if (price === null) return null;
-
-  const extra = product as ProductRecord & ProductPriceFields;
+export function buildProductJsonLd(product: ProductRecord): Record<string, unknown> {
   const images = [...new Set([...product.imageUrls, product.coverImageUrl ?? ""].filter(Boolean))].map(
     absoluteMediaUrl,
   );
   const productUrl = absoluteUrl(routes.product(product.slug));
+  const brand = deriveBrand(product.name);
   const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": `${productUrl}#product`,
     name: product.name,
     description: plainProductDescription(product.description),
-    image: images,
-    brand: deriveBrand(product.name)
-      ? { "@type": "Brand", name: deriveBrand(product.name) }
-      : undefined,
+    image: images.length ? images : undefined,
+    sku: product.sku?.trim() || undefined,
+    brand: brand ? { "@type": "Brand", name: brand } : undefined,
     category: product.categoryName || undefined,
     url: productUrl,
   };
-
-  if (product.sku?.trim()) jsonLd.sku = product.sku.trim();
-
-  const offer: Record<string, unknown> = {
-    "@type": "Offer",
-    price,
-    priceCurrency: "MXN",
-    availability: productAvailability(product),
-    url: productUrl,
-  };
-  if (typeof extra.priceValidUntil === "string" && extra.priceValidUntil.trim()) {
-    offer.priceValidUntil = extra.priceValidUntil.trim();
-  }
-  if (typeof extra.itemCondition === "string" && extra.itemCondition.trim()) {
-    offer.itemCondition = extra.itemCondition.trim();
-  }
-  jsonLd.offers = offer;
 
   return Object.fromEntries(Object.entries(jsonLd).filter(([, value]) => value !== undefined));
 }
