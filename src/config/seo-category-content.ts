@@ -49,7 +49,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaTitle: "Guantes, jeringas y cubrebocas en Hermosillo",
     metaDescription: "Guantes de nitrilo y de látex para exploración, cubrebocas KN95 y de 3 capas, jeringas con aguja de 1 a 10 ml y termómetro digital. Hermosillo.",
     h1: "Equipo médico: guantes, jeringas y cubrebocas",
-    h2: ["Guantes de nitrilo y de látex para exploración", "Jeringas con aguja y cubrebocas", "Cómo elegir guantes: nitrilo o látex"],
+    h2: ["Guantes de nitrilo y de látex para exploración", "Jeringas con aguja y cubrebocas", "Cómo elegir equipo médico"],
     introHtml: "Para el trabajo diario en consultorio, clínica o botiquín, en Promacson Tienda surtimos artículos de protección y consumibles médicos: guantes de exploración de nitrilo y de látex en caja de 100, cubrebocas KN95 y de 3 capas, jeringas con aguja de 1, 3, 5 y 10 ml, y un termómetro digital. Atendemos a consultorios y clientes de Hermosillo. Si además necesitas curación, revisa nuestro <a href=\"/catalogo/material-de-curacion\">material de curación</a>, incluidas las gasas estériles, y los <a href=\"/catalogo/antisepticos-y-desinfectantes\">antisépticos y desinfectantes</a>.",
   },
   "cuidado-avanzado-de-heridas": {

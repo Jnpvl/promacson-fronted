@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddToQuoteButton } from "@/components/quote/add-to-quote-button";
 import { categorySeoFallbacks } from "@/config/seo-category-content";
-import { categorySeoGuidance } from "@/config/seo-category-guidance";
+import { categorySeoGuidance, productSeoGuidance } from "@/config/seo-category-guidance";
 import { routes } from "@/lib/routes";
 import { getCategoryBySlug } from "@/lib/services/categories.service";
 import { getProductBySlug, getProducts } from "@/lib/services/products.service";
@@ -72,7 +72,8 @@ export default async function ProductoPdpPage({ params }: Props) {
   const description = plainProductDescription(product.description);
   const purposeText = ownSectionText(product.purpose, description);
   const presentationText = ownSectionText(product.presentation, description);
-  const choosingText = categoryChoosingText(category?.slug ?? product.categorySlug);
+  const choosingText =
+    productSeoGuidance(product) ?? categoryChoosingText(category?.slug ?? product.categorySlug);
   const productJsonLd = buildProductJsonLd(product);
   const breadcrumbItems = [
     homeBreadcrumb(),
