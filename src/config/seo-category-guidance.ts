@@ -3,23 +3,23 @@ export const categorySeoGuidance: Record<string, string[]> = {
     "Las gasas estériles sirven para cubrir heridas; las no estériles, para limpieza o uso general. En vendas y cintas, fíjate en el ancho y el largo que indica cada producto.",
   ],
   "ortopedia-y-soportes": [
-    "Revisa la zona del cuerpo que se va a apoyar y la talla que indica cada producto. Collares y suspensorios manejan tallas; úsalos según indicación médica.",
+    "Elige según la zona que necesitas apoyar y revisa la talla en la ficha de cada producto. ¿Dudas con la medida? Escríbenos por WhatsApp o visítanos en Hermosillo y te ayudamos a encontrar la tuya.",
   ],
   "antisepticos-y-desinfectantes": [
     "El mismo producto puede ofrecerse en distintos tamaños, desde 60 hasta 1000 ml, y en líquido o spray. Elige según el uso: botiquín, consultorio o reposición.",
   ],
   "medias-de-compresion": [
-    "Cada modelo indica su compresión (15-20 o 20-30 mmHg), largo (rodilla o muslo), si lleva punta cerrada y las tallas S a XL. El nivel adecuado debe definirlo tu médico.",
+    "Cada modelo indica su compresión (15-20 o 20-30 mmHg), largo (rodilla o muslo), si lleva punta cerrada y las tallas S a XL. ¿Ya sabes qué compresión buscas? Escríbenos por WhatsApp o visítanos en Hermosillo y te ayudamos con modelo y talla.",
   ],
   "medias-antiembolicas": [
-    "Se usan en pacientes encamados y en recuperación postquirúrgica, según indicación médica. Hay modelos a la rodilla y al muslo, con tallas CH, M y G.",
+    "Hay modelos a la rodilla y al muslo, en tallas CH, M y G, para pacientes encamados o en recuperación postquirúrgica. Escríbenos por WhatsApp o visítanos en Hermosillo y te ayudamos a elegir modelo y talla.",
   ],
   "equipo-medico": [
     "Las jeringas disponibles tienen capacidades de 1, 3, 5 y 10 ml; los cubrebocas incluyen opciones KN95 y de 3 capas.",
-    "Piensa primero en el uso que le vas a dar y en las necesidades de quien lo va a usar, en casa, consultorio o clínica. Revisa las medidas, la capacidad o el peso máximo que indica cada producto, y si cuenta con certificaciones o registro sanitario. Considera también el mantenimiento, los consumibles y la garantía. Si tienes dudas, pregúntanos en la tienda antes de cotizar; el uso clínico debe indicarlo el personal de salud.",
+    "Elige según dónde lo vas a usar, en casa, consultorio o clínica, y revisa medidas y capacidad en la ficha. ¿No sabes cuál te conviene? Escríbenos por WhatsApp o visítanos en Hermosillo y te ayudamos a escoger el ideal.",
   ],
   "cuidado-avanzado-de-heridas": [
-    "La elección depende del tipo de herida y del exudado, y debe definirla el personal de salud. Cada producto indica su tecnología (alginato, espuma de silicona o DACC) y su medida.",
+    "Cada producto indica su tecnología (alginato, espuma de silicona o DACC) y su medida. ¿Ya sabes cuál buscas o tienes dudas? Escríbenos por WhatsApp o visítanos en Hermosillo y te ayudamos a encontrarlo.",
   ],
 };
 
