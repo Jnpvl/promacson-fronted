@@ -6,8 +6,6 @@ import { ProductGallery } from "@/components/catalog/product-gallery";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddToQuoteButton } from "@/components/quote/add-to-quote-button";
-import { categorySeoFallbacks } from "@/config/seo-category-content";
-import { categorySeoGuidance, productSeoGuidance } from "@/config/seo-category-guidance";
 import { routes } from "@/lib/routes";
 import { getCategoryBySlug } from "@/lib/services/categories.service";
 import { getProductBySlug, getProducts } from "@/lib/services/products.service";
@@ -50,15 +48,6 @@ function ownSectionText(value: string | null | undefined, description: string | 
   return text;
 }
 
-/** Texto "Cómo elegir" de la categoría (mismo que se muestra en /catalogo/<slug>). */
-function categoryChoosingText(categorySlug: string | undefined): string | undefined {
-  if (!categorySlug) return undefined;
-  const headings = categorySeoFallbacks[categorySlug]?.h2.slice(1) ?? [];
-  const guidance = categorySeoGuidance[categorySlug] ?? [];
-  const index = headings.findIndex((heading) => /elegir/i.test(heading));
-  return (index >= 0 ? guidance[index] : undefined) ?? guidance[0];
-}
-
 export default async function ProductoPdpPage({ params }: Props) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
@@ -72,8 +61,6 @@ export default async function ProductoPdpPage({ params }: Props) {
   const description = plainProductDescription(product.description);
   const purposeText = ownSectionText(product.purpose, description);
   const presentationText = ownSectionText(product.presentation, description);
-  const choosingText =
-    productSeoGuidance(product) ?? categoryChoosingText(category?.slug ?? product.categorySlug);
   const productJsonLd = buildProductJsonLd(product);
   const breadcrumbItems = [
     homeBreadcrumb(),
@@ -172,13 +159,6 @@ export default async function ProductoPdpPage({ params }: Props) {
               <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-text-muted">
                 {presentationText}
               </p>
-            </section>
-          ) : null}
-
-          {choosingText ? (
-            <section className="mt-8 max-w-4xl">
-              <h2 className="text-xl font-bold text-text sm:text-2xl">Cómo elegir</h2>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">{choosingText}</p>
             </section>
           ) : null}
 
