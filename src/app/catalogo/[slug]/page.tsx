@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { CatalogSidebar, CatalogSidebarMobile } from "@/components/catalog/catalog-sidebar";
 import { ProductCard } from "@/components/catalog/product-card";
+import { VisibleFaq } from "@/components/seo/visible-faq";
 import { categorySeoFallbacks } from "@/config/seo-category-content";
+import { faqPlainItems } from "@/content/faq";
 import { categorySeoGuidance } from "@/config/seo-category-guidance";
 import { routes } from "@/lib/routes";
 import { getCategories, getCategoryBySlug } from "@/lib/services/categories.service";
@@ -12,6 +14,7 @@ import { getProducts, mapProductToCard } from "@/lib/services/products.service";
 import {
   buildBreadcrumbJsonLd,
   buildCategoryCollectionJsonLd,
+  buildFaqJsonLd,
   catalogBreadcrumb,
   homeBreadcrumb,
 } from "@/lib/seo-jsonld";
@@ -54,6 +57,11 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
   const h2s = fallback?.h2 ?? [];
   const displayName = fallback?.h1 && !category.name.trim() ? fallback.h1 : category.name;
   const h1Text = fallback?.h1Override?.trim() || displayName;
+  const faq = fallback?.faq ?? [];
+  const faqJsonLd = buildFaqJsonLd(faqPlainItems(faq));
+  // El campo description del admin ya se pinta en las tarjetas y, si no hay intro de código,
+  // como párrafo corto. La intro larga y la FAQ viven en código: ese campo es un texto breve
+  // (Parte A lo deja alineado con la meta) y no alcanza para la intro ni para la FAQ.
   const breadcrumbItems = [
     homeBreadcrumb(),
     catalogBreadcrumb(),
@@ -71,33 +79,44 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildCategoryCollectionJsonLd(category, products, displayName)),
+          __html: JSON.stringify(buildCategoryCollectionJsonLd(category, products, h1Text)),
         }}
       />
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
       <SiteShell>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-          <nav className="mb-4 text-sm text-text-muted">
+          <nav aria-label="Migas de pan" className="mb-4 text-sm text-text-muted">
             <Link href={routes.home} className="hover:text-brand-700">
               Inicio
             </Link>
-            <span className="mx-2">/</span>
+            <span className="mx-2" aria-hidden="true">
+              ›
+            </span>
             <Link href={routes.catalog} className="hover:text-brand-700">
               Catálogo
             </Link>
-            <span className="mx-2">/</span>
-            <span className="text-text">{displayName}</span>
+            <span className="mx-2" aria-hidden="true">
+              ›
+            </span>
+            <span className="text-text" aria-current="page">
+              {displayName}
+            </span>
           </nav>
 
           <header className="mb-6">
             <h1 className="text-xl font-bold text-text sm:text-2xl">{h1Text}</h1>
-            {category.description ? (
-              <p className="mt-1 text-sm text-text-muted">{category.description}</p>
-            ) : null}
             {fallback?.introHtml ? (
               <div
-                className="mt-4 max-w-4xl text-sm leading-relaxed text-text-muted"
+                className="mt-4 max-w-4xl space-y-3 text-sm leading-relaxed text-text-muted [&_a]:font-medium [&_a]:text-brand-700 [&_a]:hover:underline [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5"
                 dangerouslySetInnerHTML={{ __html: sanitizeSeoHtml(fallback.introHtml) }}
               />
+            ) : category.description ? (
+              <p className="mt-1 text-sm text-text-muted">{category.description}</p>
             ) : null}
             {products.length > 0 ? (
               <p className="mt-2 text-xs text-text-muted">
@@ -142,6 +161,8 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
               ) : null}
             </section>
           ))}
+
+          <VisibleFaq items={faq} className="mt-10 max-w-3xl" />
         </div>
       </SiteShell>
     </>

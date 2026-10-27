@@ -13,6 +13,8 @@ export const routes = {
   services: "/servicios",
   privacy: "/aviso-de-privacidad",
   terms: "/terminos",
+  guides: "/guias",
+  guide: (slug: string) => `/guias/${slug}`,
   serviceDetail: (slug: string) => `/servicios/${slug}`,
   admin: {
     root: "/admin",

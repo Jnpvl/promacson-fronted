@@ -14,6 +14,7 @@ import {
   whatsappHref,
 } from "@/lib/site-contact-utils";
 import { routes } from "@/lib/routes";
+import { buildStoreJsonLd } from "@/lib/home-jsonld";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.about, {
@@ -26,7 +27,12 @@ export default async function NosotrosPage() {
   const contact = await getSiteContact();
 
   return (
-    <SiteShell>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildStoreJsonLd()) }}
+      />
+      <SiteShell>
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
         <PageHeader
           title="Promacson Tienda, tienda médica en Hermosillo"
@@ -169,5 +175,6 @@ export default async function NosotrosPage() {
         </section>
       </div>
     </SiteShell>
+    </>
   );
 }

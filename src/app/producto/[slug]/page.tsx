@@ -9,6 +9,7 @@ import { AddToQuoteButton } from "@/components/quote/add-to-quote-button";
 import { routes } from "@/lib/routes";
 import { getCategoryBySlug } from "@/lib/services/categories.service";
 import { getProductBySlug, getProducts } from "@/lib/services/products.service";
+import { otherMeasureProducts } from "@/lib/product-variants";
 import {
   buildBreadcrumbJsonLd,
   buildProductJsonLd,
@@ -54,9 +55,12 @@ export default async function ProductoPdpPage({ params }: Props) {
   if (!product) notFound();
 
   const category = await getCategoryBySlug(product.categorySlug);
-  const relatedProducts = category
-    ? (await getProducts(category.slug)).filter((item) => item.slug !== product.slug).slice(0, 3)
-    : [];
+  const categoryProducts = category ? await getProducts(category.slug) : [];
+  const otherMeasures = otherMeasureProducts(product.slug, categoryProducts);
+  const otherMeasureSlugs = new Set(otherMeasures.map((item) => item.slug));
+  const relatedProducts = categoryProducts
+    .filter((item) => item.slug !== product.slug && !otherMeasureSlugs.has(item.slug))
+    .slice(0, 3);
   const images = product.imageUrls.length ? product.imageUrls : [];
   const description = plainProductDescription(product.description);
   const purposeText = ownSectionText(product.purpose, description);
@@ -85,24 +89,32 @@ export default async function ProductoPdpPage({ params }: Props) {
       />
       <SiteShell>
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-          <nav className="mb-4 text-sm text-text-muted">
+          <nav aria-label="Migas de pan" className="mb-4 text-sm text-text-muted">
             <Link href={routes.home} className="hover:text-brand-700">
               Inicio
             </Link>
-            <span className="mx-2">/</span>
+            <span className="mx-2" aria-hidden="true">
+              ›
+            </span>
             <Link href={routes.catalog} className="hover:text-brand-700">
               Catálogo
             </Link>
             {category ? (
               <>
-                <span className="mx-2">/</span>
+                <span className="mx-2" aria-hidden="true">
+                  ›
+                </span>
                 <Link href={routes.category(category.slug)} className="hover:text-brand-700">
                   {category.name}
                 </Link>
               </>
             ) : null}
-            <span className="mx-2">/</span>
-            <span className="text-text">{product.name}</span>
+            <span className="mx-2" aria-hidden="true">
+              ›
+            </span>
+            <span className="text-text" aria-current="page">
+              {product.name}
+            </span>
           </nav>
 
           <div className="grid min-w-0 gap-10 lg:grid-cols-2">
@@ -159,6 +171,21 @@ export default async function ProductoPdpPage({ params }: Props) {
               <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-text-muted">
                 {presentationText}
               </p>
+            </section>
+          ) : null}
+
+          {otherMeasures.length > 0 ? (
+            <section className="mt-8 max-w-4xl">
+              <h2 className="text-xl font-bold text-text sm:text-2xl">Otras medidas</h2>
+              <ul className="mt-3 space-y-2 text-sm">
+                {otherMeasures.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={routes.product(item.slug)} className="text-brand-700 hover:underline">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </section>
           ) : null}
 

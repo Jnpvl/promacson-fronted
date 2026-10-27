@@ -24,8 +24,8 @@ export function AudienceCards() {
           </p>
           <h3 className="mt-2 text-xl font-bold text-text">Clínicas, hospitales y distribuidores</h3>
           <p className="mt-3 text-text-muted">
-            Compras recurrentes, licitaciones o surtido para reventa. Te asignamos ejecutivo,
-            precios por contrato y logística dedicada.
+            Compras recurrentes, licitaciones o surtido para reventa. Te asignamos ejecutivo y
+            logística dedicada.
           </p>
           <Button href="/mayoreo" variant="primary" className="mt-6">
             Compra mayoreo

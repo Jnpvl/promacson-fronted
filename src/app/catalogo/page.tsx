@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteShell } from "@/components/layout/site-shell";
 import { CategoryCard } from "@/components/catalog/category-card";
+import { catalogLines } from "@/content/catalog-lines";
 import { routes } from "@/lib/routes";
 import { getCategories } from "@/lib/services/categories.service";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.catalog, {
-  title: "Catálogo de insumos médicos en Hermosillo | Promacson Tienda",
+  title: "Catálogo de productos médicos",
   description:
-    "Material de curación, ortopedia Daonsa, medias de compresión, antisépticos y equipo médico en Hermosillo. Elige una categoría y arma tu cotización.",
+    "Explora el catálogo de Promacson: material de curación, apósitos, medias de compresión, antisépticos, ortopedia y equipo médico. Cotiza o visítanos.",
 });
 
 export default async function CatalogoPage() {
@@ -19,17 +20,27 @@ export default async function CatalogoPage() {
     <SiteShell>
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         <header className="mb-6">
-          <h1 className="text-xl font-bold text-text sm:text-2xl">Catálogo de insumos médicos</h1>
-          <p className="mt-2 text-sm text-text-muted sm:text-base">
-            Catálogo de nuestra tienda médica en Hermosillo: insumos médicos, material de curación,
-            equipo médico y ortopedia. Elige una categoría y arma tu cotización.
-          </p>
-          <p className="mt-1 text-sm text-text-muted">
-            Elige una categoría o{" "}
+          <h1 className="text-xl font-bold text-text sm:text-2xl">Catálogo de productos médicos</h1>
+          <ul className="mt-4 max-w-3xl space-y-2 text-sm leading-relaxed text-text-muted sm:text-base">
+            {categories.map((category) => {
+              const line = catalogLines[category.slug];
+              return (
+                <li key={category.slug}>
+                  <Link
+                    href={routes.category(category.slug)}
+                    className="font-medium text-brand-700 hover:underline"
+                  >
+                    {line?.anchor ?? category.name}
+                  </Link>
+                  {line?.text ? ` — ${line.text}` : category.description ? ` — ${category.description}` : null}
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-3 text-sm text-text-muted">
             <Link href={routes.catalogAllProducts} className="font-medium text-brand-700 hover:underline">
-              ver todos los productos
+              Ver todos los productos
             </Link>
-            .
           </p>
         </header>
 

@@ -12,7 +12,7 @@ export function FeaturedProducts({ products }: { products: ProductRecord[] }) {
           <div>
             <h2 className="text-2xl font-bold text-text">Productos destacados</h2>
             <p className="mt-1 text-sm text-text-muted">
-              Solicita cotización para conocer disponibilidad y precio
+              Solicita cotización para conocer disponibilidad y presentación.
             </p>
           </div>
           <Link

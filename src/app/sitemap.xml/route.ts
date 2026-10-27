@@ -1,3 +1,4 @@
+import { guides } from "@/content/guides";
 import { apiClient, hasApiClient } from "@/lib/api/client";
 import { apiEndpoints } from "@/lib/api/endpoints";
 import { routes } from "@/lib/routes";
@@ -12,6 +13,8 @@ export const dynamic = "force-dynamic";
 const FETCH_TIMEOUT_MS = 8000;
 const STATIC_LASTMOD = "2026-10-01";
 const LEGAL_LASTMOD = "2026-10-04";
+/** Páginas cuyo contenido o schema se editó en esta entrega. */
+const EDITED_LASTMOD = "2026-10-26";
 
 type SitemapUrl = {
   loc: string;
@@ -43,15 +46,21 @@ function validLastmod(value: unknown): string | undefined {
 
 function staticUrls(): SitemapUrl[] {
   return [
-    { loc: absoluteUrl(routes.home), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "1" },
-    { loc: absoluteUrl(routes.catalog), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.9" },
+    { loc: absoluteUrl(routes.home), lastmod: EDITED_LASTMOD, changefreq: "weekly", priority: "1" },
+    { loc: absoluteUrl(routes.catalog), lastmod: EDITED_LASTMOD, changefreq: "weekly", priority: "0.9" },
     { loc: absoluteUrl(routes.catalogAllProducts), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
     { loc: absoluteUrl(routes.services), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
-    { loc: absoluteUrl(routes.about), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
+    { loc: absoluteUrl(routes.about), lastmod: EDITED_LASTMOD, changefreq: "monthly", priority: "0.7" },
+    { loc: absoluteUrl(routes.guides), lastmod: EDITED_LASTMOD, changefreq: "monthly", priority: "0.6" },
+    ...guides.map((guide) => ({
+      loc: absoluteUrl(routes.guide(guide.slug)),
+      lastmod: guide.updatedAt,
+      changefreq: "monthly" as const,
+      priority: "0.65",
+    })),
     { loc: absoluteUrl(routes.location), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.wholesale), lastmod: STATIC_LASTMOD, changefreq: "monthly", priority: "0.6" },
     { loc: absoluteUrl(routes.privacy), lastmod: LEGAL_LASTMOD, changefreq: "yearly", priority: "0.3" },
-    { loc: absoluteUrl(routes.terms), lastmod: LEGAL_LASTMOD, changefreq: "yearly", priority: "0.3" },
   ];
 }
 
@@ -105,7 +114,7 @@ async function fetchCatalogUrls(): Promise<SitemapUrl[]> {
 }
 
 /** Rutas con noindex: nunca en el sitemap (contradice la señal a Google). */
-const NOINDEX_PATHS = [routes.quote, routes.search, routes.admin.root];
+const NOINDEX_PATHS = [routes.quote, routes.search, routes.terms, routes.admin.root];
 
 function isNoindexLoc(loc: string): boolean {
   let pathname: string;
