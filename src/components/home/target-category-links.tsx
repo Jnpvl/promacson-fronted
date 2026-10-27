@@ -3,19 +3,38 @@ import { homeExactLinks } from "@/content/home-seo";
 
 export function TargetCategoryLinks() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <h2 className="text-2xl font-bold text-text">Empieza por una categoría</h2>
-      <div className="mt-4 flex flex-wrap gap-3">
+    <div className="mt-10">
+      <h2 className="text-xl font-bold text-text sm:text-2xl">Empieza por una categoría</h2>
+      <ul className="mt-4 grid gap-2 sm:grid-cols-2">
         {homeExactLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-800 hover:bg-brand-100"
-          >
-            {link.label}
-          </Link>
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="flex h-full items-center justify-between gap-3 rounded-xl border border-brand-200 bg-white px-4 py-3 text-sm font-medium text-brand-800 transition hover:border-brand-600 hover:bg-brand-50"
+            >
+              <span>{link.label}</span>
+              <ArrowIcon />
+            </Link>
+          </li>
         ))}
-      </div>
-    </section>
+      </ul>
+    </div>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className="shrink-0 text-brand-600"
+      aria-hidden
+    >
+      <path d="M9 18l6-6-6-6" />
+    </svg>
   );
 }

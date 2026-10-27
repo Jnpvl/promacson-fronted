@@ -6,6 +6,7 @@ import { CatalogSidebar, CatalogSidebarMobile } from "@/components/catalog/catal
 import { ProductCard } from "@/components/catalog/product-card";
 import { VisibleFaq } from "@/components/seo/visible-faq";
 import { categorySeoFallbacks } from "@/config/seo-category-content";
+import { catalogLines } from "@/content/catalog-lines";
 import { faqPlainItems } from "@/content/faq";
 import { categorySeoGuidance } from "@/config/seo-category-guidance";
 import { routes } from "@/lib/routes";
@@ -59,9 +60,10 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
   const h1Text = fallback?.h1Override?.trim() || displayName;
   const faq = fallback?.faq ?? [];
   const faqJsonLd = buildFaqJsonLd(faqPlainItems(faq));
-  // El campo description del admin ya se pinta en las tarjetas y, si no hay intro de código,
-  // como párrafo corto. La intro larga y la FAQ viven en código: ese campo es un texto breve
-  // (Parte A lo deja alineado con la meta) y no alcanza para la intro ni para la FAQ.
+  const lead = catalogLines[slug]?.text?.trim() || category.description?.trim() || "";
+  const hasReading = Boolean(fallback?.introHtml) || h2s.length > 0 || faq.length > 0;
+  // La frase corta va bajo el H1. La intro larga y la FAQ viven en código, debajo de la cuadrícula:
+  // el campo description del admin es un texto breve (Parte A lo alinea con la meta).
   const breadcrumbItems = [
     homeBreadcrumb(),
     catalogBreadcrumb(),
@@ -109,14 +111,9 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
           </nav>
 
           <header className="mb-6">
-            <h1 className="text-xl font-bold text-text sm:text-2xl">{h1Text}</h1>
-            {fallback?.introHtml ? (
-              <div
-                className="mt-4 max-w-4xl space-y-3 text-sm leading-relaxed text-text-muted [&_a]:font-medium [&_a]:text-brand-700 [&_a]:hover:underline [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5"
-                dangerouslySetInnerHTML={{ __html: sanitizeSeoHtml(fallback.introHtml) }}
-              />
-            ) : category.description ? (
-              <p className="mt-1 text-sm text-text-muted">{category.description}</p>
+            <h1 className="text-2xl font-bold tracking-tight text-text sm:text-3xl">{h1Text}</h1>
+            {lead ? (
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-muted sm:text-base">{lead}</p>
             ) : null}
             {products.length > 0 ? (
               <p className="mt-2 text-xs text-text-muted">
@@ -126,10 +123,6 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
           </header>
 
           <CatalogSidebarMobile categories={categories} active={{ categorySlug: slug }} />
-
-          {h2s[0] ? (
-            <h2 className="mb-4 text-lg font-bold text-text sm:text-xl">{h2s[0]}</h2>
-          ) : null}
 
           <div className="mt-4 grid gap-6 lg:mt-6 lg:grid-cols-[220px_1fr]">
             <aside className="hidden lg:block">
@@ -153,16 +146,32 @@ export default async function CatalogoCategoriaPage({ params }: Props) {
             </div>
           </div>
 
-          {h2s.slice(1).map((heading, index) => (
-            <section key={heading} className="mt-10 max-w-4xl">
-              <h2 className="text-lg font-bold text-text sm:text-xl">{heading}</h2>
-              {guidance[index] ? (
-                <p className="mt-2 text-sm leading-relaxed text-text-muted">{guidance[index]}</p>
-              ) : null}
+          {hasReading ? (
+            <section className="mt-14 rounded-2xl border border-brand-200 bg-brand-50 px-5 py-8 sm:px-8 sm:py-10">
+              <div className="mx-auto max-w-3xl">
+                {h2s[0] ? (
+                  <h2 className="text-xl font-bold text-brand-900 sm:text-2xl">{h2s[0]}</h2>
+                ) : null}
+                {fallback?.introHtml ? (
+                  <div
+                    className={`${h2s[0] ? "mt-4" : ""} space-y-3 text-sm leading-relaxed text-text-muted sm:text-base [&_a]:font-medium [&_a]:text-brand-700 [&_a]:hover:underline [&_li]:rounded-xl [&_li]:border [&_li]:border-brand-200 [&_li]:bg-white [&_li]:px-3 [&_li]:py-2.5 [&_ul]:mt-4 [&_ul]:grid [&_ul]:list-none [&_ul]:gap-2 [&_ul]:pl-0 sm:[&_ul]:grid-cols-2`}
+                    dangerouslySetInnerHTML={{ __html: sanitizeSeoHtml(fallback.introHtml) }}
+                  />
+                ) : null}
+                {h2s.slice(1).map((heading, index) => (
+                  <div key={heading} className="mt-8">
+                    <h2 className="text-lg font-bold text-text sm:text-xl">{heading}</h2>
+                    {guidance[index] ? (
+                      <p className="mt-2 text-sm leading-relaxed text-text-muted sm:text-base">
+                        {guidance[index]}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+                <VisibleFaq items={faq} className="mt-8" />
+              </div>
             </section>
-          ))}
-
-          <VisibleFaq items={faq} className="mt-10 max-w-3xl" />
+          ) : null}
         </div>
       </SiteShell>
     </>

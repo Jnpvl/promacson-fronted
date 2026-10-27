@@ -5,7 +5,11 @@ import { routes } from "@/lib/routes";
 export const homeMetaDescription =
   "Insumos médicos en Hermosillo: material de curación, medias de compresión Jobst, apósitos Cutimed y ortopedia Daonsa. Visítanos o cotiza por WhatsApp.";
 
-/** Párrafo visible bajo el H1. El número es el NAP canónico (WhatsApp de la tienda). */
+/** Una o dos líneas bajo el H1. El párrafo completo (homeIntro) sigue más abajo. */
+export const homeLead =
+  "Insumos médicos en Hermosillo para consultorio, hospital y casa: material de curación, medias Jobst, apósitos Cutimed y ortopedia Daonsa.";
+
+/** Párrafo completo de la home. El número es el NAP canónico (WhatsApp de la tienda). */
 export const homeIntro =
   "En Promacson Tienda encuentras insumos médicos en Hermosillo para consultorio, hospital y casa: material de curación, medias de compresión Jobst y antiembólicas Protec, apósitos Cutimed para cuidado avanzado de heridas, antisépticos Dermodine y ortopedia Daonsa. Te asesoramos para que te lleves la medida y la presentación correctas. Escríbenos al WhatsApp 662 450 1230 o visítanos en nuestra tienda, C. Benito Juárez 177, Col. Constitución.";
 
