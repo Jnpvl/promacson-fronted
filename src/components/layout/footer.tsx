@@ -63,6 +63,11 @@ export function Footer({ contact, services }: { contact: SiteContact; services: 
                   </Link>
                 </li>
                 <li>
+                  <Link href={routes.guides} className="hover:text-white">
+                    Guías
+                  </Link>
+                </li>
+                <li>
                   <Link
                     href={routes.location}
                     className="hover:text-white"

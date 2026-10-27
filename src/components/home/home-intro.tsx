@@ -1,17 +1,17 @@
+import { VisibleFaq } from "@/components/seo/visible-faq";
 import { siteConfig } from "@/config/site";
+import { homeFaq, homeIntro } from "@/content/home-seo";
 
-/** H1 SEO local del inicio (el carrusel usa h2 para no duplicar). */
+/** H1 y texto de la home. El carrusel no usa h1. */
 export function HomeIntro() {
   return (
     <section className="border-b border-border bg-surface">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-        <h1 className="text-center text-xl font-bold tracking-tight text-text sm:text-2xl md:text-3xl">
+        <h1 className="max-w-3xl text-2xl font-bold tracking-tight text-text sm:text-3xl">
           {siteConfig.homeH1}
         </h1>
-        <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-text-muted sm:text-base">
-          Material de curación, equipo médico, antisépticos y ortopedia en C. Benito Juárez 177,
-          Col. Constitución. Solicita cotización por pieza o por caja.
-        </p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-text-muted sm:text-base">{homeIntro}</p>
+        <VisibleFaq items={homeFaq} className="mt-8 max-w-3xl" />
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ export const metadata: Metadata = withCanonical(routes.terms, {
   title: "Términos y condiciones de uso del sitio",
   description:
     "Términos y condiciones de Promacson Tienda: información del sitio, precios y disponibilidad, pedidos por cotización, uso de productos y ley aplicable.",
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 });
 
 export default function TerminosPage() {

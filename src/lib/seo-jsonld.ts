@@ -41,16 +41,63 @@ function deriveBrand(name: string): string | undefined {
   return match;
 }
 
+/** Campos de precio/stock opcionales: la API actual no los expone (catálogo solo cotización). */
+type ProductPriceFields = {
+  price?: unknown;
+  stock?: unknown;
+  inStock?: unknown;
+  priceValidUntil?: unknown;
+  itemCondition?: unknown;
+};
+
+/** Precio válido (> 0) o null. Sin precio válido no se emite el nodo Product. */
+export function validProductPrice(product: ProductRecord): number | null {
+  const raw = (product as ProductRecord & ProductPriceFields).price;
+  const value =
+    typeof raw === "number" ? raw : typeof raw === "string" && raw.trim() ? Number(raw) : Number.NaN;
+  return Number.isFinite(value) && value > 0 ? value : null;
+}
+
+function productAvailability(product: ProductRecord): string {
+  const extra = product as ProductRecord & ProductPriceFields;
+  const outOfStock =
+    extra.inStock === false ||
+    (typeof extra.stock === "number" && Number.isFinite(extra.stock) && extra.stock <= 0);
+  return outOfStock ? "https://schema.org/OutOfStock" : "https://schema.org/InStock";
+}
+
 /**
- * JSON-LD Product sin offers ni precio: Promacson no publica precios (catálogo solo cotización).
- * Se emite siempre (nombre, imagen, descripción, sku, marca si se conoce, url).
+ * JSON-LD Product solo con offers válidos.
+ *
+ * Search Console marca el snippet de producto como inválido si el nodo Product
+ * no trae offers, review ni aggregateRating (el reporte de ~57 ítems). Un Offer
+ * sin precio también es inválido, y el catálogo no publica precios, así que sin
+ * precio el nodo se omite. BreadcrumbList de la ficha se mantiene.
  */
-export function buildProductJsonLd(product: ProductRecord): Record<string, unknown> {
+export function buildProductJsonLd(product: ProductRecord): Record<string, unknown> | null {
+  const price = validProductPrice(product);
+  if (price === null) return null;
+
+  const extra = product as ProductRecord & ProductPriceFields;
   const images = [...new Set([...product.imageUrls, product.coverImageUrl ?? ""].filter(Boolean))].map(
     absoluteMediaUrl,
   );
   const productUrl = absoluteUrl(routes.product(product.slug));
   const brand = deriveBrand(product.name);
+  const offer: Record<string, unknown> = {
+    "@type": "Offer",
+    price,
+    priceCurrency: "MXN",
+    availability: productAvailability(product),
+    url: productUrl,
+  };
+  if (typeof extra.priceValidUntil === "string" && extra.priceValidUntil.trim()) {
+    offer.priceValidUntil = extra.priceValidUntil.trim();
+  }
+  if (typeof extra.itemCondition === "string" && extra.itemCondition.trim()) {
+    offer.itemCondition = extra.itemCondition.trim();
+  }
+
   const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -62,9 +109,35 @@ export function buildProductJsonLd(product: ProductRecord): Record<string, unkno
     brand: brand ? { "@type": "Brand", name: brand } : undefined,
     category: product.categoryName || undefined,
     url: productUrl,
+    offers: offer,
   };
 
   return Object.fromEntries(Object.entries(jsonLd).filter(([, value]) => value !== undefined));
+}
+
+export function buildFaqJsonLd(items: { question: string; answer: string }[]): Record<string, unknown> | null {
+  const mainEntity = items
+    .map((item) => ({
+      question: item.question.trim(),
+      answer: item.answer.trim(),
+    }))
+    .filter((item) => item.question && item.answer)
+    .map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    }));
+
+  if (mainEntity.length === 0) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity,
+  };
 }
 
 export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): Record<string, unknown> {
