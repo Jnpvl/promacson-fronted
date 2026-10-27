@@ -19,29 +19,16 @@ export default async function CatalogoPage() {
   return (
     <SiteShell>
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-        <header className="mb-6">
-          <h1 className="text-xl font-bold text-text sm:text-2xl">Catálogo de productos médicos</h1>
-          <ul className="mt-4 max-w-3xl space-y-2 text-sm leading-relaxed text-text-muted sm:text-base">
-            {categories.map((category) => {
-              const line = catalogLines[category.slug];
-              return (
-                <li key={category.slug}>
-                  <Link
-                    href={routes.category(category.slug)}
-                    className="font-medium text-brand-700 hover:underline"
-                  >
-                    {line?.anchor ?? category.name}
-                  </Link>
-                  {line?.text ? ` — ${line.text}` : category.description ? ` — ${category.description}` : null}
-                </li>
-              );
-            })}
-          </ul>
-          <p className="mt-3 text-sm text-text-muted">
-            <Link href={routes.catalogAllProducts} className="font-medium text-brand-700 hover:underline">
-              Ver todos los productos
-            </Link>
-          </p>
+        <header className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <h1 className="text-2xl font-bold tracking-tight text-text sm:text-3xl">
+            Catálogo de productos médicos
+          </h1>
+          <Link
+            href={routes.catalogAllProducts}
+            className="shrink-0 text-sm font-medium text-brand-700 hover:underline"
+          >
+            Ver todos los productos
+          </Link>
         </header>
 
         {categories.length === 0 ? (
@@ -51,7 +38,11 @@ export default async function CatalogoPage() {
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((category) => (
-              <CategoryCard key={category.slug} category={category} />
+              <CategoryCard
+                key={category.slug}
+                category={category}
+                description={catalogLines[category.slug]?.text}
+              />
             ))}
           </div>
         )}

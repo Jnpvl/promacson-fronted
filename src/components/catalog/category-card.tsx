@@ -25,10 +25,13 @@ type CategoryCardProps = {
   variant?: "default" | "compact";
   /** Texto visible/ancla alternativo (no cambia el nombre de la categoría en la API). */
   label?: string;
+  /** Descripción corta de la tarjeta. Si no viene, se usa category.description. */
+  description?: string;
 };
 
-export function CategoryCard({ category, variant = "default", label }: CategoryCardProps) {
+export function CategoryCard({ category, variant = "default", label, description }: CategoryCardProps) {
   const title = label?.trim() || category.name;
+  const blurb = description?.trim() || category.description?.trim() || "";
   const gradient = CATEGORY_GRADIENTS[category.slug] ?? DEFAULT_GRADIENT;
   const isCompact = variant === "compact";
 
@@ -84,10 +87,8 @@ export function CategoryCard({ category, variant = "default", label }: CategoryC
             {title}
           </h3>
 
-          {!isCompact ? (
-            <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-text-muted">
-              {category.description}
-            </p>
+          {!isCompact && blurb ? (
+            <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-text-muted">{blurb}</p>
           ) : null}
 
           <span
