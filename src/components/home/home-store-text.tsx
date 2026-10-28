@@ -9,7 +9,7 @@ const whatsappHref = `https://wa.me/${storeNap.telephoneE164.replace(/\D/g, "")}
 export function HomeStoreText() {
   return (
     <div className="mt-10">
-      <h2 className="text-xl font-bold text-text sm:text-2xl">Visítanos en Hermosillo</h2>
+      <h2 className="text-xl font-bold text-text sm:text-2xl">Visítanos</h2>
       <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
         La tienda está en {storeNap.address.streetAddress}, {storeNap.address.neighborhood}, de
         lunes a viernes de 8:00 a 17:00. Escríbenos al{" "}

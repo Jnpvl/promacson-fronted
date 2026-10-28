@@ -72,9 +72,9 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Gasas estériles, vendas elásticas y enyesadas, algodón, cintas adhesivas y apósitos para consultorio y botiquín. Material de curación en Hermosillo.",
     h1: "Material de curación",
-    h1Override: "Material de curación en Hermosillo",
+    h1Override: "Material de curación",
     h2: ["Gasas estériles, vendas y material de curación"],
-    introHtml: `<p>En Hermosillo encuentras gasas, rollos de gasa, vendas elásticas Protec, compresas y tela adhesiva de seda, por pieza o por caja. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 179, Col. Constitución.</p><p>Estas fichas detallan medida y presentación:</p>${linkedList([
+    introHtml: `<p>Tenemos gasas, rollos de gasa, vendas elásticas Protec, compresas y tela adhesiva de seda, por pieza o por caja. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 179, Col. Constitución.</p><p>Estas fichas detallan medida y presentación:</p>${linkedList([
       ...vendas,
       ...telas,
       ["compresa-no-esteril-protec-45-45-cm", "compresa de vientre Protec 45 × 45 cm"],
@@ -123,7 +123,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Tienda de ortopedia en Hermosillo: cabestrillo, collar cervical, férula de muñeca, inmovilizador de hombro y más soportes Daonsa. C. Benito Juárez 179, Col. Constitución.",
     h1: "Ortopedia y soportes",
-    h1Override: "Tienda de ortopedia en Hermosillo",
+    h1Override: "Tienda de ortopedia",
     h2: ["Soportes ortopédicos Daonsa"],
     introHtml: `<p>Tenemos soportes ortopédicos Daonsa en varias tallas: férula de muñeca cock-up, collar cervical, cabestrillo y más. Ven a la tienda para revisar la talla, o escríbenos al WhatsApp 662 450 1230.</p>${linkedList([
       ["ferula-para-muneca-cock-up-daonsa", "férula para muñeca cock-up Daonsa"],
@@ -158,9 +158,9 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Alcohol desnaturalizado y etílico, agua oxigenada, yodopovidona y gel antiséptico en varias presentaciones para botiquín y consultorio en Hermosillo.",
     h1: "Antisépticos y desinfectantes",
-    h1Override: "Antisépticos y desinfectantes en Hermosillo",
+    h1Override: "Antisépticos y desinfectantes",
     h2: ["Antisépticos y desinfectantes disponibles"],
-    introHtml: `<p>Yodopovidona Dermodine en solución y espuma, alcohol etílico, agua oxigenada y gel antiséptico, de 60 ml a 1 litro. Cotiza por WhatsApp 662 450 1230 o visítanos en Hermosillo.</p>`,
+    introHtml: `<p>Yodopovidona Dermodine en solución y espuma, alcohol etílico, agua oxigenada y gel antiséptico, de 60 ml a 1 litro. Cotiza por WhatsApp 662 450 1230 o visítanos en la tienda.</p>`,
     faq: [
       {
         question: "¿Qué presentaciones de Dermodine hay?",
@@ -191,9 +191,9 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Medias de compresión Jobst de 15-20 y 20-30 mmHg: línea Relief a la rodilla o al muslo, con o sin punta, y línea Sport. Tallas S a XL. Hermosillo.",
     h1: "Medias de compresión",
-    h1Override: "Medias de compresión Jobst en Hermosillo",
+    h1Override: "Medias de compresión Jobst",
     h2: ["Medias de compresión Jobst"],
-    introHtml: `<p>Las medias de compresión Jobst tienen compresión graduada, más firme en el tobillo y menor hacia arriba. Tenemos la línea Relief para el uso diario y la línea Sport, con un tejido pensado para la actividad física, en 15-20 y 20-30 mmHg, a la rodilla o al muslo, con punta abierta o cerrada y en tallas S a XL. Cada caja trae un par. Te ayudamos a elegir tu talla y compresión: escríbenos al WhatsApp 662 450 1230 o ven a la tienda en Hermosillo.</p><ul><li>${a(cat("medias-antiembolicas"), "Medias antiembólicas en Hermosillo")}</li><li>${a(guideMedias, "Cómo elegir medias de compresión")}</li><li>${a(product("media-jobst-relief-rodilla-con-punta-15-20"), "Media Jobst Relief rodilla con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-relief-muslo-con-punta-15-20"), "Media Jobst Relief muslo con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-sport-15-20"), "Media Jobst Sport 15-20 mmHg")}</li></ul>`,
+    introHtml: `<p>Las medias de compresión Jobst tienen compresión graduada, más firme en el tobillo y menor hacia arriba. Tenemos la línea Relief para el uso diario y la línea Sport, con un tejido pensado para la actividad física, en 15-20 y 20-30 mmHg, a la rodilla o al muslo, con punta abierta o cerrada y en tallas S a XL. Cada caja trae un par. Te ayudamos a elegir tu talla y compresión: escríbenos al WhatsApp 662 450 1230 o ven a la tienda.</p><ul><li>${a(cat("medias-antiembolicas"), "Medias antiembólicas")}</li><li>${a(guideMedias, "Cómo elegir medias de compresión")}</li><li>${a(product("media-jobst-relief-rodilla-con-punta-15-20"), "Media Jobst Relief rodilla con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-relief-muslo-con-punta-15-20"), "Media Jobst Relief muslo con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-sport-15-20"), "Media Jobst Sport 15-20 mmHg")}</li></ul>`,
     faq: [
       {
         question: "¿Qué compresión elijo, 15-20 o 20-30 mmHg?",
@@ -230,9 +230,9 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Medias antiembólicas Protec con compresión graduada y libres de látex, a la rodilla o al muslo, para uso hospitalario y postquirúrgico. Hermosillo.",
     h1: "Medias antiembólicas",
-    h1Override: "Medias antiembólicas en Hermosillo",
+    h1Override: "Medias antiembólicas",
     h2: ["Medias antiembólicas Protec"],
-    introHtml: `<p>Las medias antiembólicas Protec tienen compresión graduada y son libres de látex. Las hay a la rodilla o al muslo, en tallas CH, M y G, y cada bolsa trae un par. Son las que más se piden para el posquirúrgico y la estancia hospitalaria. Te ayudamos con la talla por WhatsApp (662 450 1230) o en la tienda.</p><ul><li>${a(cat("medias-de-compresion"), "Medias de compresión Jobst en Hermosillo")}</li><li>${a(guideMedias, "Cómo elegir medias de compresión")}</li></ul>`,
+    introHtml: `<p>Las medias antiembólicas Protec tienen compresión graduada y son libres de látex. Las hay a la rodilla o al muslo, en tallas CH, M y G, y cada bolsa trae un par. Son las que más se piden para el posquirúrgico y la estancia hospitalaria. Te ayudamos con la talla por WhatsApp (662 450 1230) o en la tienda.</p><ul><li>${a(cat("medias-de-compresion"), "Medias de compresión Jobst")}</li><li>${a(guideMedias, "Cómo elegir medias de compresión")}</li></ul>`,
     faq: [
       {
         question: "¿Cuál es la diferencia con las medias de compresión?",
@@ -263,9 +263,9 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Guantes de nitrilo y de látex para exploración, cubrebocas KN95 y de 3 capas, jeringas con aguja de 1 a 10 ml y termómetro digital. Hermosillo.",
     h1: "Equipo médico: guantes, jeringas y cubrebocas",
-    h1Override: "Equipo médico en Hermosillo",
+    h1Override: "Equipo médico",
     h2: ["Guantes de nitrilo y de látex para exploración", "Jeringas con aguja y cubrebocas"],
-    introHtml: `<p>Equipo médico para consultorio y casa en Hermosillo con marcas reconocidas: guantes de exploración de nitrilo y de látex, cubrebocas, jeringas con aguja y termómetro digital. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 179.</p><p>Si además necesitas curación, revisa ${a(cat("material-de-curacion"), "material de curación en Hermosillo")} y ${a(cat("antisepticos-y-desinfectantes"), "antisépticos y desinfectantes en Hermosillo")}.</p>`,
+    introHtml: `<p>Equipo médico para consultorio y casa con marcas reconocidas: guantes de exploración de nitrilo y de látex, cubrebocas, jeringas con aguja y termómetro digital. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 179.</p><p>Si además necesitas curación, revisa ${a(cat("material-de-curacion"), "material de curación")} y ${a(cat("antisepticos-y-desinfectantes"), "antisépticos y desinfectantes")}.</p>`,
     faq: [
       {
         question: "¿Qué equipo médico tienen?",
@@ -290,9 +290,9 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     metaDescription:
       "Apósitos Cutimed Alginate, Siltec y Sorbact, apósitos transparentes con CHG y cinta Hypafix para el cuidado de heridas. Hermosillo, Sonora.",
     h1: "Cuidado avanzado de heridas",
-    h1Override: "Cuidado avanzado de heridas en Hermosillo",
+    h1Override: "Cuidado avanzado de heridas",
     h2: ["Apósitos y fijación para heridas"],
-    introHtml: `<p>Tenemos apósitos de alginato de calcio Cutimed Alginate, espuma con silicona Cutimed Siltec, apósitos Cutimed Sorbact, apósitos transparentes Protec con clorhexidina (CHG) al 2%, fijación Hypafix y antisépticos Dermodine. Hay varias medidas y se venden por pieza o por caja. Cotiza por WhatsApp 662 450 1230 o visítanos en Hermosillo.</p><p>También puedes ver ${a(cat("antisepticos-y-desinfectantes"), "antisépticos y desinfectantes en Hermosillo")}.</p><p>Apósitos transparentes CHG:</p>${linkedList(chg)}`,
+    introHtml: `<p>Tenemos apósitos de alginato de calcio Cutimed Alginate, espuma con silicona Cutimed Siltec, apósitos Cutimed Sorbact, apósitos transparentes Protec con clorhexidina (CHG) al 2%, fijación Hypafix y antisépticos Dermodine. Hay varias medidas y se venden por pieza o por caja. Cotiza por WhatsApp 662 450 1230 o visítanos en la tienda.</p><p>También puedes ver ${a(cat("antisepticos-y-desinfectantes"), "antisépticos y desinfectantes")}.</p><p>Apósitos transparentes CHG:</p>${linkedList(chg)}`,
     faq: [
       {
         question: "¿Qué es un apósito de alginato?",

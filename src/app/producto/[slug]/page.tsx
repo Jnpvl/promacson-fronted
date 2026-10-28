@@ -4,12 +4,10 @@ import { notFound } from "next/navigation";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ProductGallery } from "@/components/catalog/product-gallery";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { AddToQuoteButton } from "@/components/quote/add-to-quote-button";
 import { routes } from "@/lib/routes";
 import { getCategoryBySlug } from "@/lib/services/categories.service";
-import { getProductBySlug, getProducts } from "@/lib/services/products.service";
-import { otherMeasureProducts } from "@/lib/product-variants";
+import { getProductBySlug } from "@/lib/services/products.service";
 import {
   buildBreadcrumbJsonLd,
   buildProductJsonLd,
@@ -55,12 +53,6 @@ export default async function ProductoPdpPage({ params }: Props) {
   if (!product) notFound();
 
   const category = await getCategoryBySlug(product.categorySlug);
-  const categoryProducts = category ? await getProducts(category.slug) : [];
-  const otherMeasures = otherMeasureProducts(product.slug, categoryProducts);
-  const otherMeasureSlugs = new Set(otherMeasures.map((item) => item.slug));
-  const relatedProducts = categoryProducts
-    .filter((item) => item.slug !== product.slug && !otherMeasureSlugs.has(item.slug))
-    .slice(0, 3);
   const images = product.imageUrls.length ? product.imageUrls : [];
   const description = plainProductDescription(product.description);
   const purposeText = ownSectionText(product.purpose, description);
@@ -149,11 +141,6 @@ export default async function ProductoPdpPage({ params }: Props) {
                   name={product.name}
                   badge={product.badge}
                 />
-                {category ? (
-                  <Button href={routes.category(category.slug)} variant="outline">
-                    Ver más en {category.name}
-                  </Button>
-                ) : null}
               </div>
             </div>
           </div>
@@ -174,40 +161,6 @@ export default async function ProductoPdpPage({ params }: Props) {
             </section>
           ) : null}
 
-          {otherMeasures.length > 0 ? (
-            <section className="mt-8 max-w-4xl">
-              <h2 className="text-xl font-bold text-text sm:text-2xl">Otras medidas</h2>
-              <ul className="mt-3 space-y-2 text-sm">
-                {otherMeasures.map((item) => (
-                  <li key={item.slug}>
-                    <Link href={routes.product(item.slug)} className="text-brand-700 hover:underline">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
-
-          {category ? (
-            <section className="mt-8 max-w-4xl">
-              <h2 className="text-xl font-bold text-text sm:text-2xl">Más en {category.name}</h2>
-              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-                <Link href={routes.category(category.slug)} className="font-medium text-brand-700 hover:underline">
-                  Ver toda la categoría
-                </Link>
-                {relatedProducts.map((related) => (
-                  <Link
-                    key={related.slug}
-                    href={routes.product(related.slug)}
-                    className="text-brand-700 hover:underline"
-                  >
-                    {related.name}
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ) : null}
         </div>
       </SiteShell>
     </>

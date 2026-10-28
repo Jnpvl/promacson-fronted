@@ -10,12 +10,12 @@ export const siteConfig = {
   /** Title absoluto de la página de inicio (SEO local) */
   homeSeoTitle: "Insumos médicos en Hermosillo | Tienda médica Promacson",
   tagline:
-    "Tienda médica en Hermosillo: insumos médicos y material de curación para consultorios, clínicas y hospitales.",
+    "Tienda médica con insumos médicos y material de curación para consultorios, clínicas y hospitales.",
   /** Descripción de respaldo del sitio. La meta de la home está en home-seo.ts. */
   description:
     "Insumos médicos en Hermosillo: material de curación, medias de compresión Jobst, apósitos Cutimed y ortopedia Daonsa. Visítanos o arma tu cotización.",
   /** H1 fijo del inicio (SEO local; el carrusel no usa h1). */
-  homeH1: "Insumos médicos en Hermosillo",
+  homeH1: "Insumos médicos",
   quoteCount: 2,
   brand: {
     primary: "#005F71",

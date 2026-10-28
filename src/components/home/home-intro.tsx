@@ -23,7 +23,7 @@ export function HomeReadingSection() {
   return (
     <section className="border-y border-brand-200 bg-brand-50">
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-        <h2 className="text-xl font-bold text-brand-900 sm:text-2xl">Promacson Tienda en Hermosillo</h2>
+        <h2 className="text-xl font-bold text-brand-900 sm:text-2xl">Promacson Tienda</h2>
         <p className="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">{homeIntro}</p>
         <TargetCategoryLinks />
         <HomeStoreText />

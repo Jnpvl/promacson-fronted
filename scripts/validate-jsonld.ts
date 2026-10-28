@@ -43,7 +43,7 @@ if (store) {
   assert(store.priceRange === STORE_PRICE_RANGE, "priceRange de la tienda cambió");
   assert(store.priceRange === "$$", "priceRange debe seguir siendo $$");
   const address = asRecord(store.address);
-  assert(address.streetAddress === "C. Benito Juárez 177", "calle distinta al NAP");
+  assert(address.streetAddress === "C. Benito Juárez 179", "calle distinta al NAP");
   assert(address.addressLocality === "Hermosillo", "ciudad distinta al NAP");
   assert(store.telephone === "+52 662 450 1230", "teléfono distinto al NAP");
   assert(!JSON.stringify(home).includes('"@type":"Product"'), "la home no debe emitir Product");
@@ -165,9 +165,9 @@ if (guide) {
 }
 
 assert(siteConfig.homeSeoTitle === "Insumos médicos en Hermosillo | Tienda médica Promacson", "title de home");
-assert(siteConfig.homeH1 === "Insumos médicos en Hermosillo", "H1 de home");
+assert(siteConfig.homeH1 === "Insumos médicos", "H1 de home");
 assert(homeMetaDescription.length === 150, `meta home tiene ${homeMetaDescription.length} caracteres`);
-assert(homeIntro.startsWith("En Promacson Tienda encuentras insumos médicos en Hermosillo"), "intro de home");
+assert(homeIntro.startsWith("En Promacson Tienda encuentras insumos médicos para consultorio"), "intro de home");
 
 function product(slug: string, name: string): ProductRecord {
   return {
