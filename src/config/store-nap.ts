@@ -1,6 +1,6 @@
 /**
  * NAP canónico de la tienda (SEO / footer / JSON-LD).
- * Solo sucursal Juárez 177 — nunca almacén Balderrama/Américas.
+ * Solo sucursal Juárez 179 — nunca almacén Balderrama/Américas.
  */
 export const storeNap = {
   name: "Promacson Tienda",
@@ -10,10 +10,10 @@ export const storeNap = {
   email: "gerardo@promacson.com.mx",
   /** Una línea legible (footer, ubicación, view-source). */
   addressFull:
-    "C. Benito Juárez 177, Col. Constitución, Hermosillo, Sonora, C.P. 83150",
+    "C. Benito Juárez 179, Col. Constitución, Hermosillo, Sonora, C.P. 83150",
   hoursDisplay: "Lun–Vie 8:00–17:00",
   address: {
-    streetAddress: "C. Benito Juárez 177",
+    streetAddress: "C. Benito Juárez 179",
     addressLocality: "Hermosillo",
     addressRegion: "Sonora",
     postalCode: "83150",
@@ -35,9 +35,9 @@ export const storeNap = {
   googleMapsUrl:
     "https://www.google.com/maps/place/Promacson+Tienda/data=!4m2!3m1!1s0x0:0x4e69af9c013e8113",
   googleMapsDirectionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=C.%20Benito%20Ju%C3%A1rez%20177%2C%20Col.%20Constituci%C3%B3n%2C%2083150%20Hermosillo%2C%20Sonora",
+    "https://www.google.com/maps/dir/?api=1&destination=C.%20Benito%20Ju%C3%A1rez%20179%2C%20Col.%20Constituci%C3%B3n%2C%2083150%20Hermosillo%2C%20Sonora",
   googleMapsEmbedSrc:
-    "https://www.google.com/maps?q=C.+Benito+Ju%C3%A1rez+177,+Constituci%C3%B3n,+83150+Hermosillo,+Son.&hl=es&z=16&output=embed",
+    "https://www.google.com/maps?q=C.+Benito+Ju%C3%A1rez+179,+Constituci%C3%B3n,+83150+Hermosillo,+Son.&hl=es&z=16&output=embed",
 } as const;
 
 export type StoreNap = typeof storeNap;

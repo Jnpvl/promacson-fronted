@@ -49,7 +49,7 @@ export const guides: GuideEntry[] = [
         heading: "Cómo saber tu talla",
         paragraphs: [
           [
-            "La talla (S a XL) sale de la medida del tobillo y la pantorrilla. En las medias al muslo también se mide el muslo, y se compara con la tabla de Jobst. Te ayudamos a medir en la tienda, en C. Benito Juárez 177, Col. Constitución, o por WhatsApp 662 450 1230.",
+            "La talla (S a XL) sale de la medida del tobillo y la pantorrilla. En las medias al muslo también se mide el muslo, y se compara con la tabla de Jobst. Te ayudamos a medir en la tienda, en C. Benito Juárez 179, Col. Constitución, o por WhatsApp 662 450 1230.",
           ],
         ],
       },

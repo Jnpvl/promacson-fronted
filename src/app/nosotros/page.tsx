@@ -20,7 +20,7 @@ import { withCanonical } from "@/lib/seo-metadata";
 export const metadata: Metadata = withCanonical(routes.about, {
   title: "Quiénes somos: tienda médica en Hermosillo",
   description:
-    "Promacson Tienda es una tienda médica en Hermosillo: insumos médicos, material de curación y ortopedia en C. Benito Juárez 177, Col. Constitución.",
+    "Promacson Tienda es una tienda médica en Hermosillo: insumos médicos, material de curación y ortopedia en C. Benito Juárez 179, Col. Constitución.",
 });
 
 export default async function NosotrosPage() {

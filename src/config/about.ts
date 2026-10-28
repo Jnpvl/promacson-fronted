@@ -2,20 +2,20 @@
 export const aboutConfig = {
   locationLabel: "Promacson Tienda",
   address: {
-    street: "C. Benito Juárez 177",
+    street: "C. Benito Juárez 179",
     neighborhood: "Constitución",
     postalCode: "83150",
     city: "Hermosillo",
     state: "Sonora",
     /** Una línea para mapas y SEO. */
-    full: "C. Benito Juárez 177, Col. Constitución, Hermosillo, Sonora, C.P. 83150",
+    full: "C. Benito Juárez 179, Col. Constitución, Hermosillo, Sonora, C.P. 83150",
   },
   /** Enlace al lugar en Google Maps. */
   googleMapsUrl:
     "https://www.google.com/maps/place/Promacson+Tienda/data=!4m2!3m1!1s0x0:0x4e69af9c013e8113",
   /** Embed apuntando a la dirección (visible en /nosotros). */
   googleMapsEmbedSrc:
-    "https://www.google.com/maps?q=C.+Benito+Ju%C3%A1rez+177,+Constituci%C3%B3n,+83150+Hermosillo,+Son.&hl=es&z=16&output=embed",
+    "https://www.google.com/maps?q=C.+Benito+Ju%C3%A1rez+179,+Constituci%C3%B3n,+83150+Hermosillo,+Son.&hl=es&z=16&output=embed",
 } as const;
 
 export const aboutHighlights = [

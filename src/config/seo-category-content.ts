@@ -74,7 +74,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     h1: "Material de curación",
     h1Override: "Material de curación en Hermosillo",
     h2: ["Gasas estériles, vendas y material de curación"],
-    introHtml: `<p>En Hermosillo encuentras gasas, rollos de gasa, vendas elásticas Protec, compresas y tela adhesiva de seda, por pieza o por caja. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 177, Col. Constitución.</p><p>Estas fichas detallan medida y presentación:</p>${linkedList([
+    introHtml: `<p>En Hermosillo encuentras gasas, rollos de gasa, vendas elásticas Protec, compresas y tela adhesiva de seda, por pieza o por caja. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 179, Col. Constitución.</p><p>Estas fichas detallan medida y presentación:</p>${linkedList([
       ...vendas,
       ...telas,
       ["compresa-no-esteril-protec-45-45-cm", "compresa de vientre Protec 45 × 45 cm"],
@@ -113,7 +113,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       {
         question: "¿Dónde están?",
         answer: [
-          "C. Benito Juárez 177, Col. Constitución, Hermosillo. También por WhatsApp 662 450 1230.",
+          "C. Benito Juárez 179, Col. Constitución, Hermosillo. También por WhatsApp 662 450 1230.",
         ],
       },
     ],
@@ -121,7 +121,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
   "ortopedia-y-soportes": {
     metaTitle: "Tienda de ortopedia en Hermosillo: soportes Daonsa | Promacson",
     metaDescription:
-      "Tienda de ortopedia en Hermosillo: cabestrillo, collar cervical, férula de muñeca, inmovilizador de hombro y más soportes Daonsa. C. Benito Juárez 177, Col. Constitución.",
+      "Tienda de ortopedia en Hermosillo: cabestrillo, collar cervical, férula de muñeca, inmovilizador de hombro y más soportes Daonsa. C. Benito Juárez 179, Col. Constitución.",
     h1: "Ortopedia y soportes",
     h1Override: "Tienda de ortopedia en Hermosillo",
     h2: ["Soportes ortopédicos Daonsa"],
@@ -145,11 +145,11 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       },
       {
         question: "¿Puedo probármelo en tienda?",
-        answer: ["Sí. Visítanos en C. Benito Juárez 177, Col. Constitución, Hermosillo."],
+        answer: ["Sí. Visítanos en C. Benito Juárez 179, Col. Constitución, Hermosillo."],
       },
       {
         question: "¿Dónde están?",
-        answer: ["C. Benito Juárez 177, Col. Constitución, Hermosillo."],
+        answer: ["C. Benito Juárez 179, Col. Constitución, Hermosillo."],
       },
     ],
   },
@@ -181,7 +181,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       {
         question: "¿Dónde están?",
         answer: [
-          "C. Benito Juárez 177, Col. Constitución, Hermosillo. También por WhatsApp 662 450 1230.",
+          "C. Benito Juárez 179, Col. Constitución, Hermosillo. También por WhatsApp 662 450 1230.",
         ],
       },
     ],
@@ -265,7 +265,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     h1: "Equipo médico: guantes, jeringas y cubrebocas",
     h1Override: "Equipo médico en Hermosillo",
     h2: ["Guantes de nitrilo y de látex para exploración", "Jeringas con aguja y cubrebocas"],
-    introHtml: `<p>Equipo médico para consultorio y casa en Hermosillo con marcas reconocidas: guantes de exploración de nitrilo y de látex, cubrebocas, jeringas con aguja y termómetro digital. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 177.</p><p>Si además necesitas curación, revisa ${a(cat("material-de-curacion"), "material de curación en Hermosillo")} y ${a(cat("antisepticos-y-desinfectantes"), "antisépticos y desinfectantes en Hermosillo")}.</p>`,
+    introHtml: `<p>Equipo médico para consultorio y casa en Hermosillo con marcas reconocidas: guantes de exploración de nitrilo y de látex, cubrebocas, jeringas con aguja y termómetro digital. Cotiza por WhatsApp 662 450 1230 o visítanos en C. Benito Juárez 179.</p><p>Si además necesitas curación, revisa ${a(cat("material-de-curacion"), "material de curación en Hermosillo")} y ${a(cat("antisepticos-y-desinfectantes"), "antisépticos y desinfectantes en Hermosillo")}.</p>`,
     faq: [
       {
         question: "¿Qué equipo médico tienen?",
@@ -280,7 +280,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       {
         question: "¿Dónde están?",
         answer: [
-          "C. Benito Juárez 177, Col. Constitución, Hermosillo. Escríbenos al WhatsApp 662 450 1230 o visítanos.",
+          "C. Benito Juárez 179, Col. Constitución, Hermosillo. Escríbenos al WhatsApp 662 450 1230 o visítanos.",
         ],
       },
     ],
@@ -314,7 +314,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       },
       {
         question: "¿Dónde están?",
-        answer: ["C. Benito Juárez 177, Col. Constitución, Hermosillo."],
+        answer: ["C. Benito Juárez 179, Col. Constitución, Hermosillo."],
       },
     ],
   },

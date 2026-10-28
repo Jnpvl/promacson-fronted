@@ -21,7 +21,7 @@ export const privacyDoc: LegalDoc = {
         {
           "b": "Promacson Tienda"
         },
-        ", con domicilio en C. Benito Juárez 177, Col. Constitución, Hermosillo, Sonora, es responsable del tratamiento de los datos personales que usted nos proporcione, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares."
+        ", con domicilio en C. Benito Juárez 179, Col. Constitución, Hermosillo, Sonora, es responsable del tratamiento de los datos personales que usted nos proporcione, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares."
       ]
     },
     {
@@ -96,7 +96,7 @@ export const termsDoc: LegalDoc = {
         {
           "b": "Promacson Tienda"
         },
-        ", con domicilio en C. Benito Juárez 177, Col. Constitución, Hermosillo, Sonora. Al usar el sitio, usted acepta estos términos."
+        ", con domicilio en C. Benito Juárez 179, Col. Constitución, Hermosillo, Sonora. Al usar el sitio, usted acepta estos términos."
       ]
     },
     {

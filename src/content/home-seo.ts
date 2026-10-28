@@ -11,12 +11,12 @@ export const homeLead =
 
 /** Párrafo completo de la home. El número es el NAP canónico (WhatsApp de la tienda). */
 export const homeIntro =
-  "En Promacson Tienda encuentras insumos médicos en Hermosillo para consultorio, hospital y casa: material de curación, medias de compresión Jobst y antiembólicas Protec, apósitos Cutimed para cuidado avanzado de heridas, antisépticos Dermodine y ortopedia Daonsa. Te asesoramos para que te lleves la medida y la presentación correctas. Escríbenos al WhatsApp 662 450 1230 o visítanos en nuestra tienda, C. Benito Juárez 177, Col. Constitución.";
+  "En Promacson Tienda encuentras insumos médicos en Hermosillo para consultorio, hospital y casa: material de curación, medias de compresión Jobst y antiembólicas Protec, apósitos Cutimed para cuidado avanzado de heridas, antisépticos Dermodine y ortopedia Daonsa. Te asesoramos para que te lleves la medida y la presentación correctas. Escríbenos al WhatsApp 662 450 1230 o visítanos en nuestra tienda, C. Benito Juárez 179, Col. Constitución.";
 
 export const homeFaq: FaqItem[] = [
   {
     question: "¿Dónde comprar insumos médicos en Hermosillo?",
-    answer: ["En C. Benito Juárez 177, Col. Constitución, o por WhatsApp 662 450 1230."],
+    answer: ["En C. Benito Juárez 179, Col. Constitución, o por WhatsApp 662 450 1230."],
   },
   {
     question: "¿Qué marcas manejan?",
