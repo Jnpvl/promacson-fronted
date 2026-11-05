@@ -12,7 +12,7 @@ import { withCanonical } from "@/lib/seo-metadata";
 export const metadata: Metadata = withCanonical(routes.location, {
   title: "Tienda de insumos médicos en Col. Constitución, Hermosillo | Promacson",
   description:
-    "Visita Promacson Tienda en C. Benito Juárez 179, Col. Constitución, C.P. 83150, Hermosillo, Sonora. Horario Lun–Vie 8:00–17:00.",
+    "Tienda médica en Hermosillo: Promacson Tienda, C. Benito Juárez 179, Col. Constitución. Insumos médicos, curación y ortopedia. Lun–Vie 8:00–17:00.",
 });
 
 const ctaOutlineClass =
