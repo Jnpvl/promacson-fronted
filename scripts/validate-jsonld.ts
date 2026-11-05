@@ -166,7 +166,7 @@ if (guide) {
 
 assert(siteConfig.homeSeoTitle === "Insumos médicos en Hermosillo | Tienda médica Promacson", "title de home");
 assert(siteConfig.homeH1 === "Insumos médicos", "H1 de home");
-assert(homeMetaDescription.length === 150, `meta home tiene ${homeMetaDescription.length} caracteres`);
+assert(homeMetaDescription.length === 160, `meta home tiene ${homeMetaDescription.length} caracteres`);
 assert(homeIntro.startsWith("En Promacson Tienda encuentras insumos médicos para consultorio"), "intro de home");
 
 function product(slug: string, name: string): ProductRecord {

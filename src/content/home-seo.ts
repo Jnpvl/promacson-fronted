@@ -3,7 +3,7 @@ import { routes } from "@/lib/routes";
 
 /** Meta description de la home (el title absoluto vive en siteConfig.homeSeoTitle). */
 export const homeMetaDescription =
-  "Insumos médicos en Hermosillo: material de curación, medias de compresión Jobst, apósitos Cutimed y ortopedia Daonsa. Visítanos o cotiza por WhatsApp.";
+  "Tienda de insumos médicos en Hermosillo: material de curación, apósitos Cutimed, medias Jobst y ortopedia. Visítanos en C. Benito Juárez 179, Col. Constitución.";
 
 /** Una o dos líneas bajo el H1. El párrafo completo (homeIntro) sigue más abajo. */
 export const homeLead =
