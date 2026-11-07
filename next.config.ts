@@ -79,6 +79,16 @@ const nextConfig: NextConfig = {
         destination: "/catalogo/ortopedia-y-soportes",
         permanent: true,
       },
+      {
+        source: "/producto/media-jobst-relief-rodilla-con-punta-15-20",
+        destination: "/producto/media-jobst-ultrasheer-rodilla-15-20",
+        permanent: true,
+      },
+      {
+        source: "/producto/media-jobst-relief-rodilla-sin-punta-15-20",
+        destination: "/catalogo/medias-de-compresion",
+        permanent: true,
+      },
     ];
   },
 };
