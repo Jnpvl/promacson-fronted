@@ -8,9 +8,9 @@ import { getCategories } from "@/lib/services/categories.service";
 import { withCanonical } from "@/lib/seo-metadata";
 
 export const metadata: Metadata = withCanonical(routes.catalog, {
-  title: "Catálogo de productos médicos",
+  title: "Tienda médica en Hermosillo: catálogo",
   description:
-    "Explora el catálogo de Promacson: material de curación, apósitos, medias de compresión, antisépticos, ortopedia y equipo médico. Cotiza o visítanos.",
+    "Tienda médica en Hermosillo: catálogo de insumos médicos, material de curación, apósitos Cutimed, medias Jobst y ortopedia. Visítanos en C. Benito Juárez 179.",
 });
 
 export default async function CatalogoPage() {
