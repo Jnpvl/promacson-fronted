@@ -193,11 +193,13 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     h1: "Medias de compresión",
     h1Override: "Medias de compresión Jobst",
     h2: ["Medias de compresión Jobst"],
-    introHtml: `<p>Las medias de compresión Jobst tienen compresión graduada, más firme en el tobillo y menor hacia arriba. Tenemos la línea Relief para el uso diario y la línea Sport, con un tejido pensado para la actividad física, en 15-20 y 20-30 mmHg, a la rodilla o al muslo, con punta abierta o cerrada y en tallas S a XL. Cada caja trae un par. Te ayudamos a elegir tu talla y compresión: escríbenos al WhatsApp 662 450 1230 o ven a la tienda.</p><ul><li>${a(cat("medias-antiembolicas"), "Medias antiembólicas")}</li><li>${a(guideMedias, "Cómo elegir medias de compresión")}</li><li>${a(product("media-jobst-relief-rodilla-con-punta-15-20"), "Media Jobst Relief rodilla con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-relief-muslo-con-punta-15-20"), "Media Jobst Relief muslo con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-sport-15-20"), "Media Jobst Sport 15-20 mmHg")}</li></ul>`,
+    introHtml: `<p>Las medias de compresión Jobst tienen compresión graduada, más firme en el tobillo y menor hacia arriba. En Promacson Tienda, en Hermosillo, manejamos Jobst Relief, Jobst UltraSheer y Jobst Sport: cuál conviene depende del nivel de compresión. Relief es unisex y de uso diario, con aspecto clásico y zona del pie reforzada. UltraSheer es de tejido ligero y translúcido, transpirable, con apariencia de media de vestir. Sport tiene tejido ligero, transpirable y con gestión de humedad, para la actividad física. En 15-20 mmHg: UltraSheer a la rodilla, Relief al muslo (con o sin punta) y Sport a la rodilla. En 20-30 mmHg: Relief a la rodilla o al muslo (con o sin punta) y Sport a la rodilla. Tallas: S, M, L y XL. Se venden por par. Si tienes dudas, escríbenos o visítanos en la tienda. Pregunta por existencias y envíos.</p><ul><li>${a(cat("medias-antiembolicas"), "Medias antiembólicas")}</li><li>${a(guideMedias, "Cómo elegir medias de compresión")}</li><li>${a(product("media-jobst-ultrasheer-rodilla-15-20"), "Media Jobst UltraSheer rodilla 15-20 mmHg")}</li><li>${a(product("media-jobst-relief-muslo-con-punta-15-20"), "Media Jobst Relief muslo con punta 15-20 mmHg")}</li><li>${a(product("media-jobst-sport-15-20"), "Media Jobst Sport 15-20 mmHg")}</li></ul>`,
     faq: [
       {
         question: "¿Qué compresión elijo, 15-20 o 20-30 mmHg?",
-        answer: ["15-20 es compresión ligera y 20-30 es moderada."],
+        answer: [
+          "Según Jobst, 15-20 mmHg es compresión ligera y 20-30 mmHg es moderada. Cuál conviene depende de ese nivel, y de las variantes que hay de cada línea: en 15-20 mmHg tenemos UltraSheer a la rodilla, Relief al muslo y Sport a la rodilla; en 20-30 mmHg, Relief a la rodilla o al muslo y Sport a la rodilla.",
+        ],
       },
       {
         question: "¿Cómo sé mi talla?",
@@ -207,12 +209,12 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       },
       {
         question: "¿Se venden por par?",
-        answer: ["Sí, cada caja trae un par."],
+        answer: ["Sí, las medias Jobst se venden por par."],
       },
       {
-        question: "¿Qué diferencia hay entre Relief y Sport?",
+        question: "¿Qué diferencia hay entre Relief, UltraSheer y Sport?",
         answer: [
-          "Las dos tienen la misma compresión graduada; Sport tiene tejido y diseño deportivo.",
+          "Las tres tienen compresión graduada. Relief es unisex y de uso diario, con aspecto clásico y zona del pie reforzada. UltraSheer es de tejido ligero y translúcido, con apariencia de media de vestir. Sport tiene tejido ligero y transpirable, pensado para la actividad física. Cuál conviene depende del nivel de compresión y de las variantes de cada línea.",
         ],
       },
       {

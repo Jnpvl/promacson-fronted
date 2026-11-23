@@ -6,7 +6,7 @@ export const catalogLines: Record<string, { anchor: string; text: string }> = {
   },
   "medias-de-compresion": {
     anchor: "Medias de compresión Jobst",
-    text: "Jobst Relief y Sport en 15-20 y 20-30 mmHg, a la rodilla o al muslo, tallas S a XL. Cada caja trae un par.",
+    text: "Manejamos Jobst Relief, Jobst UltraSheer y Jobst Sport. Cuál conviene depende del nivel de compresión, 15-20 o 20-30 mmHg, según las variantes de cada línea. Tallas: S, M, L y XL. Se venden por par.",
   },
   "medias-antiembolicas": {
     anchor: "Medias antiembólicas",
