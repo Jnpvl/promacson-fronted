@@ -125,7 +125,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
     h1: "Ortopedia y soportes",
     h1Override: "Tienda de ortopedia",
     h2: ["Soportes ortopédicos Daonsa"],
-    introHtml: `<p>Tenemos soportes ortopédicos Daonsa en varias tallas: férula de muñeca cock-up, collar cervical, cabestrillo y más. Ven a la tienda para revisar la talla, o escríbenos al WhatsApp 662 450 1230.</p>${linkedList([
+    introHtml: `<p>Tenemos soportes ortopédicos Daonsa en varias tallas: férula de muñeca cock-up, collar cervical, cabestrillo y más. Ven a la tienda para revisar la talla, o escríbenos si tienes dudas.</p>${linkedList([
       ["ferula-para-muneca-cock-up-daonsa", "férula para muñeca cock-up Daonsa"],
       ["collar-cervical-blanco-daonsa", "collar cervical Daonsa"],
       ["cabestrillo-daonsa", "cabestrillo Daonsa"],
@@ -140,7 +140,7 @@ export const categorySeoFallbacks: Record<string, CategorySeoFallback> = {
       {
         question: "¿Cómo elijo la talla?",
         answer: [
-          "Hay varias tallas. Ven a la tienda para revisarla, o escríbenos al WhatsApp 662 450 1230.",
+          "Hay varias tallas. Ven a la tienda para revisarla, o escríbenos si tienes dudas.",
         ],
       },
       {
