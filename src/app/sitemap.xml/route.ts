@@ -48,7 +48,6 @@ function staticUrls(): SitemapUrl[] {
   return [
     { loc: absoluteUrl(routes.home), lastmod: EDITED_LASTMOD, changefreq: "weekly", priority: "1" },
     { loc: absoluteUrl(routes.catalog), lastmod: EDITED_LASTMOD, changefreq: "weekly", priority: "0.9" },
-    { loc: absoluteUrl(routes.catalogAllProducts), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
     { loc: absoluteUrl(routes.services), lastmod: STATIC_LASTMOD, changefreq: "weekly", priority: "0.85" },
     { loc: absoluteUrl(routes.about), lastmod: EDITED_LASTMOD, changefreq: "monthly", priority: "0.7" },
     { loc: absoluteUrl(routes.guides), lastmod: EDITED_LASTMOD, changefreq: "monthly", priority: "0.6" },
@@ -114,7 +113,7 @@ async function fetchCatalogUrls(): Promise<SitemapUrl[]> {
 }
 
 /** Rutas con noindex: nunca en el sitemap (contradice la señal a Google). */
-const NOINDEX_PATHS = [routes.quote, routes.search, routes.terms, routes.admin.root];
+const NOINDEX_PATHS = [routes.quote, routes.search, routes.terms, routes.catalogAllProducts, routes.admin.root];
 
 function isNoindexLoc(loc: string): boolean {
   let pathname: string;

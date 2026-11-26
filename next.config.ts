@@ -89,6 +89,11 @@ const nextConfig: NextConfig = {
         destination: "/catalogo/medias-de-compresion",
         permanent: true,
       },
+      {
+        source: "/producto/colchon-presion-alterna",
+        destination: "/producto/colchon-presion-alterna-burbujas-handy-cc01",
+        permanent: true,
+      },
     ];
   },
 };

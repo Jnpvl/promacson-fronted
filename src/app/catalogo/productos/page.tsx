@@ -12,6 +12,9 @@ export const metadata: Metadata = withCanonical(routes.catalogAllProducts, {
   title: "Todos los productos: insumos médicos | Promacson Tienda",
   description:
     "Catálogo completo de insumos médicos en Hermosillo: gasas, guantes, apósitos Cutimed, medias Jobst, soportes Daonsa y más.",
+  // Listado único de las fichas, sin texto propio: Google lo rastrea pero no lo indexa.
+  // noindex + follow: sigue pasando enlaces a las fichas, que ya están en el sitemap.
+  robots: { index: false, follow: true },
 });
 
 export default async function CatalogoTodosProductosPage() {
